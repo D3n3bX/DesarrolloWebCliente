@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Piedra, Papel o Tijera</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="PiedraPapelTijeras.js"></script>
+    <link rel="stylesheet" href="PiedraPapelTijeras.css">
+</head>
+    <body>
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="container mt-5">
+
+            <h1 class="mb-4 text-center">Piedra, papel o tijera</h1>
+
+            <!-- Formulario para seleccionar el número de jugadores -->
+            <div class="form-group">
+                <label for="numPlayers">Número de jugadores:</label>
+                <select id="numPlayers" class="form-control">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+
+            <!-- Formulario para seleccionar las imágenes -->
+            <div class="form-group">
+                <label for="imageSet">Elegir imágenes:</label>
+                <select id="imageSet" class="form-control">
+                    <option value="options1">Set de Imágenes 1</option>
+                    <option value="options2">Set de Imágenes 2</option>
+                </select>
+            </div>
+
+            <!-- Botón para jugar una ronda -->
+            <button id="playButton" class="btn btn-primary mt-2" onclick="play()">Jugar</button>
+            
+            <div id="gameResults" class="mt-4">
+
+                <h2 class="text-center">Resultados:</h2>
+
+                <!-- Fila que contiene unan tarjeta para cada jugador -->
+                <div class="row">
+
+                    <div class="col-md-6 mx-auto">
+                        <!-- Tarjeta para el jugador 1 -->
+                        <div id="player1" class="card player-container">
+                            <div class="card-body text-center">
+                                <img id="player1Choice" class="image" src="" alt="">
+                                <div id="player1Score">Jugador 1: 0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mx-auto">
+                        <!-- Tarjeta para el jugador 2 -->
+                        <div id="player2" class="card player-container">
+                            <div class="card-body text-center">
+                                <img id="player2Choice" class="image" src="" alt="">
+                                <div id="player2Score">Jugador 2: 0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="text-center">
+                <div id="winner">Ganador: </div>
+            </div>
+
+            <!-- Botón para finalizar la partida -->
+            <button id="finishButton" class="btn btn-danger mt-2" onclick="finish()" >Finalizar</button>
+        </div>
+    </body>
+</html>

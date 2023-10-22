@@ -1,0 +1,31 @@
+/* Estilo para las imágenes */
+img {
+    width: 75%;
+}
+
+/* Estilo para las tarjetas de los jugadores */
+.card {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el cartel de ganador */
+#winner {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Estilo para resaltar al jugador ganador */
+.winner-card {
+    animation: flip 1s linear infinite; /* Aplica una animación de giro constante durante 1 segundo */
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateY(0deg); /* Sin rotación al inicio */
+    }
+    100% {
+        transform: rotateY(360deg); /* Rotación completa después de 1 segundo */
+    }
+}

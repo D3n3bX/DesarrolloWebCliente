@@ -1,0 +1,12 @@
+/* NoteList.css */
+
+.notes-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card-container {
+  margin: 10px;
+  flex: 0 0 calc(33.3333% - 20px); /* Esto hace que cada tarjeta ocupe aproximadamente un tercio del contenedor con un pequeño margen */
+}

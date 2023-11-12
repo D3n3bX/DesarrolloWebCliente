@@ -1,0 +1,17 @@
+.addNote {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc; /* Agrega un borde alrededor del formulario */
+    border-radius: 5px; /* Agrega esquinas redondeadas */
+  }
+  
+  .addNote input,
+  .addNote textarea {
+    margin-bottom: 10px;
+    resize: none;
+  }
+  
+  .addNote button {
+    margin-top: 10px;
+  }

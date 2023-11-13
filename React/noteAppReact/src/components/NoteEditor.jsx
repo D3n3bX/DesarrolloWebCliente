@@ -6,6 +6,7 @@ import React, { useState, useRef } from 'react';
 import { Dropdown, Form, Button } from 'react-bootstrap';
 
 // COMPONENTS
+import ColorFilter from './ColorFilter';
 
 // CSS
 import './NoteEditor.css';
@@ -99,25 +100,7 @@ function NoteEditor({ addNote }) {
 
       {/* Añadir color de fondo */}
       <Form.Group controlId="noteColor" className="color-dropdown">
-        {/* Menú desplegable */}
-        <Dropdown>
-          <Dropdown.Toggle variant="light" id="dropdown-basic">
-            Color de Fondo
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu className="color-dropdown-menu">
-            {presetColors.map((color) => (
-              <Dropdown.Item
-                key={color}
-                onClick={() => setBackgroundColor(color)}
-                className="color-dropdown-item"
-              >
-                <div className="color-preview" style={{ backgroundColor: color }}></div>
-                <span className="color-name">{colorNames[color]}</span>
-              </Dropdown.Item>
-            ))}
-          </Dropdown.Menu>
-        </Dropdown>
+        <ColorFilter onFilterChange={setBackgroundColor} />
       </Form.Group>
 
       {/* Botón para agregar nota */}

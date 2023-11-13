@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 // COMPONENTS
 import Note from './Note';
 import NoteEditor from './NoteEditor';
+import SearchBar from './SearchBar';
 
 //CSS
 import './NoteList.css';
@@ -44,20 +45,24 @@ function NoteList() {
   */
   const deleteNote = (id) => setNotes(notes.filter((note) => note.id !== id));
 
+  const filteredNotes = notes.filter(
+    (note) =>
+      note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      note.content.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
-       <NoteEditor addNote={addNote} />
-    <div className="notes-list">
-      
-        {notes.map((note) => (
+      <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+      <NoteEditor addNote={addNote} />
+      <div className="notes-list">
+        {filteredNotes.map((note) => (
           <div key={note.id}>
             <Note note={note} deleteNote={deleteNote} />
           </div>
         ))}
+      </div>
     </div>
-    </div>
-   
-
   );
 
 }

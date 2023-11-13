@@ -21,10 +21,13 @@ import './Note.css';
             - Note
 */
 function Note({ note, deleteNote }) {
+  const cardStyle = {
+    backgroundColor: note.backgroundColor || '#ffffff', // Usa el color de fondo o blanco por defecto
+  };
 
   return (
     <div className="card-container">
-      <Card>
+      <Card style={cardStyle}>
         <Card.Body>
           <Card.Title>{note.title}</Card.Title>
           <Card.Text>{note.content}</Card.Text>
@@ -35,7 +38,6 @@ function Note({ note, deleteNote }) {
       </Card>
     </div>
   );
-
 }
 
 export default Note;

@@ -1,0 +1,21 @@
+.search-bar {
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo para la entrada de búsqueda */
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Estilo para resaltar la entrada de búsqueda al enfocar */
+  .search-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  

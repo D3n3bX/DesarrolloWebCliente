@@ -12,6 +12,27 @@
     resize: none;
   }
   
-  .addNote button {
-    margin-top: 10px;
-  }
+.color-dropdown {
+  width: 100%;
+}
+
+.color-dropdown-menu {
+  width: 15%;
+}
+
+.color-dropdown-item {
+  display: flex;
+  align-items: center;
+}
+
+/* Visulización del color */
+.color-preview {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 1px solid black; /* Añade un borde negro alrededor del cuadro de color */
+}
+
+.addNote button {
+  margin-top: 10px;
+}

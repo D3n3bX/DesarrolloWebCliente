@@ -3,16 +3,32 @@
 // Uilizar useRef para manejar el enfoque del campo de texto (opcional)
 
 import React, { useState, useRef } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Dropdown, Form, Button } from 'react-bootstrap';
 
 // COMPONENTS
 
 // CSS
 import './NoteEditor.css';
 
+/* DICCIONARIO
+    colorNames
+      Indica el código de color en hexadecimal con su color correspondiente
+      Clave:
+        - color en hexadecimal
+      Valor:
+        - nombre de color
+*/
+const colorNames = {
+  '#ffffff': 'Blanco',
+  '#ff0000': 'Rojo',
+  '#00ff00': 'Verde',
+  '#0000ff': 'Azul',
+  '#ffff00': 'Amarillo',
+};
+
 /* COMPONENTE
     NoteEditor({ addNote })
-      Edita las notas
+      Crea un editr de notas
       Propiedades:
         - addNote -> 
       Return:
@@ -22,6 +38,7 @@ function NoteEditor({ addNote }) {
 
   const [title, setTitle] = useState(''); // Declaro un estado llamado title, setTitle me permite actualizar dicho estado
   const [content, setContent] = useState(''); // Declaro un estado llamado content, setContent me permite acutalizar dicho estado
+  const [backgroundColor, setBackgroundColor] = useState('#ffffff');  // Declaro un estado llamado backgroundColor, setBackgroundColor me permite acutalizar dicho estado
   const titleInputRef = useRef(null);
 
   /* FUNCIÓN
@@ -32,21 +49,33 @@ function NoteEditor({ addNote }) {
       - Ninguno
   */
   const handleAddNote = () => {
+
     if (title && content) { // Si title y content tienen contenido
-      const newNote = { // Creo una nueva nota
-        id: Date.now(),
-        title,
-        content,
+
+      const newNote = { // Creo una nueva nota compuesta por
+        id: Date.now(), // Un id único
+        title, // Un título
+        content, // Un contenido
+        backgroundColor, // Un color de fondo
       };
+
       addNote(newNote); // Llamo a addNote para que añada newNote a NoteList
       setTitle(''); // Llamo a setTitle para setear el título
       setContent(''); // Llamo a setContent para setear el contenido
+      setBackgroundColor('#ffffff'); // Llamo a setBackgroundColor para setear el color
       titleInputRef.current.focus();
+
     }
+
   };
+  
+  const presetColors = ['#ffffff', '#ff0000', '#00ff00', '#0000ff', '#ffff00']; // Colores disponibles para el fondo de color de las notas
 
   return (
+
+    // Formulario para añadir una nueva nota
     <Form className="addNote">
+      {/* Añadir título de la nota */}
       <Form.Group controlId="noteTitle">
         <Form.Control
           type="text"
@@ -57,6 +86,7 @@ function NoteEditor({ addNote }) {
         />
       </Form.Group>
 
+      {/* Añadir contenido de la nota */}
       <Form.Group controlId="noteContent">
         <Form.Control
           as="textarea"
@@ -67,10 +97,35 @@ function NoteEditor({ addNote }) {
         />
       </Form.Group>
 
+      {/* Añadir color de fondo */}
+      <Form.Group controlId="noteColor" className="color-dropdown">
+        {/* Menú desplegable */}
+        <Dropdown>
+          <Dropdown.Toggle variant="light" id="dropdown-basic">
+            Color de Fondo
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu className="color-dropdown-menu">
+            {presetColors.map((color) => (
+              <Dropdown.Item
+                key={color}
+                onClick={() => setBackgroundColor(color)}
+                className="color-dropdown-item"
+              >
+                <div className="color-preview" style={{ backgroundColor: color }}></div>
+                <span className="color-name">{colorNames[color]}</span>
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      </Form.Group>
+
+      {/* Botón para agregar nota */}
       <Button variant="primary" onClick={() => handleAddNote()}>
         Agregar Nota
       </Button>
     </Form>
+
   );
 }
 

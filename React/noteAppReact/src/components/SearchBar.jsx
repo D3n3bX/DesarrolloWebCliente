@@ -7,13 +7,14 @@ import './SearchBar.css'
     SearchBar({ searchTerm, onSearchChange })
         Crea una barra de búsqueda para poder filtrar notas por título o contenido
         Propiedades:
-            - searchTerm -> 
-            - onSearchChange -> 
+            - searchTerm -> término o terminos a buscar en alguna nota
+            - onSearchChange -> función que buscará la nota
         Return:
             - SearchBar
 */
 function SearchBar({ searchTerm, onSearchChange }) {
   return (
+
     <div className="search-bar">
       <input
         type="text"
@@ -23,6 +24,7 @@ function SearchBar({ searchTerm, onSearchChange }) {
         className="search-input"
       />
     </div>
+    
   );
 }
 

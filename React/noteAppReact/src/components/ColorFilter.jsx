@@ -24,13 +24,13 @@ const ColorFilter = ({ onFilterChange }) => {
   */
   const colorNames = {
     '#ffffff': 'Blanco',
-    '#ff0000': 'Rojo',
-    '#00ff00': 'Verde',
-    '#0000ff': 'Azul',
-    '#ffff00': 'Amarillo',
+    '#ffb3b3': 'Rojo',
+    '#b3ffbf': 'Verde',
+    '#b3daff': 'Azul',
+    '#ffffbf': 'Amarillo',
   };
 
-  const presetColors = ['#ffffff', '#ff0000', '#00ff00', '#0000ff', '#ffff00']; // Array con los colores posibles que hay
+  const presetColors = ['#ffffff', '#ffb3b3', '#b3ffbf', '#b3daff', '#ffffbf']; // Array con los colores posibles que hay
 
   const [selectedColor, setSelectedColor] = useState(''); // Declaro un estado llamado selectedColor, setSelectedColor me permite actualizar dicho estado
 
@@ -48,12 +48,14 @@ const ColorFilter = ({ onFilterChange }) => {
   };
 
   return (
+
     <div className="color-filter">
+      {/* Manú desplegable */}
       <Dropdown as={ButtonGroup}>
         <Dropdown.Toggle variant="light" id="color-filter-dropdown">
           Filtrar por Color
         </Dropdown.Toggle>
-
+        {/* Items del menú desplegable */}
         <Dropdown.Menu>
           <Dropdown.Item onClick={() => handleColorChange('')}>Todos los colores</Dropdown.Item>
           {presetColors.map((color) => (
@@ -64,12 +66,8 @@ const ColorFilter = ({ onFilterChange }) => {
           ))}
         </Dropdown.Menu>
       </Dropdown>
-      {selectedColor && (
-        <div className="selected-color-preview" style={{ backgroundColor: selectedColor }}>
-          {/* Muestra el color seleccionado */}
-        </div>
-      )}
     </div>
+
   );
 };
 

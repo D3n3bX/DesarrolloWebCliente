@@ -8,11 +8,3 @@
     display: inline-block;
     margin-right: 5px;
 }
-
-.selected-color-preview {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-    margin-left: 0; /* Coloca el cuadrado de color a la izquierda */
-    vertical-align: middle;
-  }

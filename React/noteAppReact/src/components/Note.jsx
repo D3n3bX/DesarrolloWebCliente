@@ -26,6 +26,7 @@ function Note({ note, deleteNote }) {
   };
 
   return (
+
     <div className="card-container">
       <Card style={cardStyle}>
         <Card.Body>
@@ -37,6 +38,7 @@ function Note({ note, deleteNote }) {
         </Card.Body>
       </Card>
     </div>
+    
   );
 }
 

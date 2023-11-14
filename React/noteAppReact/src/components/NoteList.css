@@ -4,6 +4,16 @@
   justify-content: space-around;
 }
 
+.searchBar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f0f0f0; /* Ajusta el color de fondo según tus preferencias */
+  border-radius: 5px;
+}
+
 .card-container {
   margin: 10px;
   flex: 0 0 calc(33.3333% - 20px); /* Esto hace que cada tarjeta ocupe aproximadamente un tercio del contenedor con un pequeño margen */

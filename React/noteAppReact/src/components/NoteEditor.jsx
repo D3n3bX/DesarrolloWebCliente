@@ -3,7 +3,7 @@
 // Uilizar useRef para manejar el enfoque del campo de texto (opcional)
 
 import React, { useState, useRef } from 'react';
-import { Dropdown, Form, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 
 // COMPONENTS
 import ColorFilter from './ColorFilter';
@@ -11,25 +11,9 @@ import ColorFilter from './ColorFilter';
 // CSS
 import './NoteEditor.css';
 
-/* DICCIONARIO
-    colorNames
-      Indica el código de color en hexadecimal con su color correspondiente
-      Clave:
-        - color en hexadecimal
-      Valor:
-        - nombre de color
-*/
-const colorNames = {
-  '#ffffff': 'Blanco',
-  '#ff0000': 'Rojo',
-  '#00ff00': 'Verde',
-  '#0000ff': 'Azul',
-  '#ffff00': 'Amarillo',
-};
-
 /* COMPONENTE
     NoteEditor({ addNote })
-      Crea un editr de notas
+      Crea un editor de notas
       Propiedades:
         - addNote -> 
       Return:
@@ -70,7 +54,6 @@ function NoteEditor({ addNote }) {
 
   };
   
-  const presetColors = ['#ffffff', '#ff0000', '#00ff00', '#0000ff', '#ffff00']; // Colores disponibles para el fondo de color de las notas
 
   return (
 

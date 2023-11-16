@@ -2,6 +2,7 @@
 // Utilizar useState para mantener una lista de notas
 
 import React, { useState, useEffect } from 'react';
+import { Row, Col, Container } from 'react-bootstrap';
 
 // COMPONENTS
 import Note from './Note';
@@ -96,23 +97,23 @@ function NoteList() {
 
   return (
 
-    <div className="list-container">
-      {/* Búsqueda con una barra de busqueda y para filtrar por color */}
-      <div className="searcBar-container">
+    <Container>
+      <Row className="searchbar-container">
         <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-        <ColorFilter onFilterChange={setColorFilter} />
-      </div>
-      {/* Editor de notas */}
-      <NoteEditor addNote={addNote} />
-      {/* Lista con las notas añadidas */}
-      <div className="notes-list">
-        {filteredNotes.map((note) => (
-          <div key={note.id}>
-            <Note note={note} deleteNote={deleteNote} />
+      </Row>
+      <Row>
+        <Col>
+          <NoteEditor addNote={addNote} />
+          <div className="notes-list">
+            {filteredNotes.map((note) => (
+              <div key={note.id}>
+                <Note note={note} deleteNote={deleteNote} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Container>
 
   );
 

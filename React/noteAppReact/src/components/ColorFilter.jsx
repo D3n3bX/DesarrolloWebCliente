@@ -53,7 +53,7 @@ const ColorFilter = ({ onFilterChange }) => {
       {/* Manú desplegable */}
       <Dropdown as={ButtonGroup}>
         <Dropdown.Toggle variant="light" id="color-filter-dropdown">
-          Filtrar por Color
+          Color de fondo
         </Dropdown.Toggle>
         {/* Items del menú desplegable */}
         <Dropdown.Menu>

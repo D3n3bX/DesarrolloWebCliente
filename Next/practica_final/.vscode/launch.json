@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "c:/Users/laiad/AppData/Local/Temp/scp35353/home/ubuntu/PR1SISDIS_Laura_Llorente_Laia_Delgado/PR1SISDIS_Laura_Llorente_Laia_Delgado/fileManager",
+      "program": "c:/Users/laiad/AppData/Local/Temp/scp35353/home/ubuntu/PR1SISDIS_Laura_Llorente_Laia_Delgado/PR1SISDIS_Laura_Llorente_Laia_Delgado/fileManager/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

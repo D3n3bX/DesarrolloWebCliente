@@ -25,7 +25,7 @@ function Login({ apiRoute, routeDir }) {
   const [isLoading, setLoading] = useState(false); // Creo un estado isLoading para indicar si se esta iniciando sesión o se ha finalizado dicho proceso
 
   const [isErrorModalVisible, setErrorModalVisible] = useState(false); // Creo un estado isErrorModalVisible para indicar si el modal debe aparece o no
-  const [errorMessage, setErrorMessage] = useState('');  // Creo un estado errirNessage para poner un mensaje de error
+  
 
   /*
     FUNCION

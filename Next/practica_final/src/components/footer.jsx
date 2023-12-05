@@ -21,10 +21,7 @@ function Footer() {
                 {/* Copyright information */}
                 <div className="mb-6">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                        distinctio earum repellat quaerat voluptatibus placeat nam,
-                        commodi optio pariatur est quia magnam eum harum corrupti dicta,
-                        aliquam sequi voluptate quas.
+                        Si quieres promocionar tu comercio no dudes en enviar un correo a: contacta@CityHub.com 
                     </p>
                 </div>
         

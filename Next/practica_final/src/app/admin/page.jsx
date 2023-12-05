@@ -9,7 +9,7 @@ function AdminPage() {
   
   return (
     <div className='min-h-screen flex items-center justify-center'>
-      <div className='bg-white p-8 shadow-md rounded-md'>
+      <div className='bg-secondary p-8 shadow-md rounded-md'>
         <Login
           onLogin={handleLogin}
           apiRoute='api/admin/'

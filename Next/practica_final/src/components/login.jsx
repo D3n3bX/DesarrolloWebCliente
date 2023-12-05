@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Modal from './modal';
 
 /*
   FUNCION
@@ -22,6 +23,9 @@ function Login({ apiRoute, routeDir }) {
   });
 
   const [isLoading, setLoading] = useState(false); // Creo un estado isLoading para indicar si se esta iniciando sesión o se ha finalizado dicho proceso
+
+  const [isErrorModalVisible, setErrorModalVisible] = useState(false); // Creo un estado isErrorModalVisible para indicar si el modal debe aparece o no
+  const [errorMessage, setErrorMessage] = useState('');  // Creo un estado errirNessage para poner un mensaje de error
 
   /*
     FUNCION
@@ -74,6 +78,7 @@ function Login({ apiRoute, routeDir }) {
       } 
       else { // Los credenciales son inválidos
         console.error('Credenciales invalidas');
+        setErrorModalVisible(true); // Muestro la ventana emergente para indicar que el usuario o la contraseña son incorrectos
       }
     } catch (error) {
       console.error('Error en la solicitud:', error); // Manejo errores de red u otros errores durante la solicitud
@@ -81,10 +86,10 @@ function Login({ apiRoute, routeDir }) {
   }
 
   return (
-    <div className='max-w-sm mx-auto mt-10 p-6 bg-white shadow-md rounded-md'>
+    <div className='max-w-sm mx-auto mt-10 p-6 bg-quaternary shadow-md rounded-md'>
       <h2 className='text-2xl font-semibold mb-4'>Iniciar Sesión</h2>
       <div className='mb-4'>
-        <label className='block text-gray-700 text-sm mb-2' htmlFor='username'>
+        <label className='block text-primary-700 text-sm mb-2' htmlFor='username'>
           Nombre de usuario:
           <input
             type='text'
@@ -92,12 +97,12 @@ function Login({ apiRoute, routeDir }) {
             name='username'
             value={credentials.username}
             onChange={handleInputChange}
-            className='mt-1 p-2 border rounded w-full'
+            className='mt-1 p-2 border rounded w-full bg-text'
           />
         </label>
       </div>
       <div className='mb-4'>
-        <label className='block text-gray-700 text-sm mb-2' htmlFor='password'>
+        <label className='block text-primary-700 text-sm mb-2' htmlFor='password'>
           Contraseña:
           <input
             type='password'
@@ -105,7 +110,7 @@ function Login({ apiRoute, routeDir }) {
             name='password'
             value={credentials.password}
             onChange={handleInputChange}
-            className='mt-1 p-2 border rounded w-full'
+            className='mt-1 p-2 border rounded w-full bg-text'
           />
         </label>
       </div>
@@ -113,10 +118,13 @@ function Login({ apiRoute, routeDir }) {
         type='submit'
         onClick={handleLogin}
         disabled={isLoading}
-        className='bg-tertiary text-white p-2 rounded'
+        className='bg-tertiary text-white p-2 rounded  hover:bg-secondary transition duration-300'
       >
         {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
       </button>
+      {isErrorModalVisible && (
+        <Modal message={"Usuario o contraseña incorrectos. Inténtalo de nuevo"} onClose={() => setErrorModalVisible(false)} />
+      )}
     </div>
   );
 }

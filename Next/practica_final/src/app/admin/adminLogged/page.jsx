@@ -4,7 +4,6 @@ function AdminLoggedrPage() {
         <div>
             <h1>Admin logged Page</h1>
         </div>
-        
     )
     
 }

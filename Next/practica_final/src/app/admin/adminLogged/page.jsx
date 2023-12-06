@@ -1,4 +1,4 @@
-function AdminLoggedrPage() {
+function AdminLoggedPage() {
     
     return(
         <div>
@@ -8,4 +8,4 @@ function AdminLoggedrPage() {
     
 }
 
-export default AdminLoggedrPage;
+export default AdminLoggedPage;

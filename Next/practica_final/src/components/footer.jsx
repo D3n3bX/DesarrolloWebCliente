@@ -26,12 +26,11 @@ function Footer() {
                 </div>
         
                 {/* Links section */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-5">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4">
                     {/* ... (código de las secciones de enlaces) */}
                     <Link href='/'>Home</Link>
                     <Link href='/admin'>Administradores</Link>
                     <Link href='/registeredUser'>Usuarios registrados</Link>
-                    <Link href='/anonymousUser'>Usuarios no registrados</Link>
                     <Link href='/commerce'>Comercio</Link>
                 </div>
             </div>

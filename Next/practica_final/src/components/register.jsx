@@ -5,28 +5,27 @@ import Modal from './modal';
 
 /*
   FUNCION
-    Login({apiRoute, routeDir})
-    Cualquier tipo de usuario ya sea admin, comercio o user se puede logar y autenticarse
+    Register({apiRoute, routeDir})
+    Los user (normales) se pueden registrar
     Parámetros:
       - apiRoute: ruta de la API que se encarga del login
       - routeDir: direccion a donde redirigira despues de loguears
     Return:
-      - Formulario para iniciar sesión
+      - Formulario para registrarse
 */
-function Login({ apiRoute, routeDir }) {
+function Register({ apiRoute, routeDir }) {
 
   const router = useRouter(); // Creo un router que me permitirá redirigir al usuario a una página específica
-  
-  // Creo un estado credenctials para almacenar el username y passwotrd que se introduzca
+
+  // Creo un estado credenctials para almacenar el username, email y passwotrd que se introduzca
   const [credentials, setCredentials] = useState({
     username: '',
+    email: '',
     password: '',
   });
 
-  const [isLoading, setLoading] = useState(false); // Creo un estado isLoading para indicar si se esta iniciando sesión o se ha finalizado dicho proceso
-
+  const [isLoading, setLoading] = useState(false); // Creo un estado isLoading para indicar si se esta registrando o se ha finalizado dicho proceso
   const [isErrorModalVisible, setErrorModalVisible] = useState(false); // Creo un estado isErrorModalVisible para indicar si el modal debe aparece o no
-  
 
   /*
     FUNCION
@@ -38,9 +37,7 @@ function Login({ apiRoute, routeDir }) {
       - Actualiza el estado de las credenciales con los nuevos valores
 */
   function handleInputChange(e) {
-    const { name, value } = e.target; // Extraigo el nombre y el valor del campo de entrada que ha cambiado
-    
-    // Actualizo el estado de las credenciales utilizando el valor previo y el nuevo valor
+    const { name, value } = e.target;
     setCredentials((prevCredentials) => ({
       ...prevCredentials,
       [name]: value,
@@ -49,20 +46,20 @@ function Login({ apiRoute, routeDir }) {
 
   /*
   FUNCION (asíncrona)
-    handleLogin(e)
-    Maneja el intento de inicio de sesión al enviar una solicitud a la API de inicio de sesión
+    handleRegister(e)
+    Maneja el intento de registro al enviar una solicitud a la API de registrarse
   Parámetros:
     - e: evento de click en el botón de inicio de sesión
   Return:
     - Realiza una solicitud a la API, maneja la respuesta y redirige al usuario si el inicio de sesión es exitoso
 */
-  async function handleLogin(e) {
+  async function handleRegister(e) {
     e.preventDefault();
 
-    setLoading(true); // Setteo el estado de carga mientras se procesa la solicitud de inicio de sesión
+    setLoading(true); // Setteo el estado de carga mientras se procesa la solicitud de registro
 
     try {
-      // Realizo una solicitud POST a la API de inicio de sesión con los credenciales
+      // Realizo una solicitud POST a la API de resgistrarse con los credenciales
       const response = await fetch(apiRoute, {
         method: 'POST',
         headers: {
@@ -72,14 +69,13 @@ function Login({ apiRoute, routeDir }) {
       });
 
       setLoading(false); // Finalizo el estado de carga después de la solicitud
-      
-      if (response.ok) { // Los credenciales son correctos
-        console.log('Login exitoso');
-        router.push(routeDir); // Redirijo al usuario a la página específica después de iniciar sesión
-      } 
-      else { // Los credenciales son inválidos
-        console.error('Credenciales invalidas');
-        setErrorModalVisible(true); // Muestro la ventana emergente para indicar que el usuario o la contraseña son incorrectos
+
+      if (response.ok) {
+        console.log('Registro exitoso');
+        router.push(routeDir);
+      } else {
+        console.error('Error en el registro');
+        setErrorModalVisible(true);
       }
     } catch (error) {
       console.error('Error en la solicitud:', error); // Manejo errores de red u otros errores durante la solicitud
@@ -88,7 +84,7 @@ function Login({ apiRoute, routeDir }) {
 
   return (
     <div className='max-w-sm mx-auto mt-10 p-6 bg-quaternary shadow-md rounded-md'>
-      <h2 className='text-2xl font-semibold mb-4'>Iniciar Sesión</h2>
+      <h2 className='text-2xl font-semibold mb-4'>Registrarse</h2>
       <div className='mb-4'>
         <label className='block text-primary-700 text-sm mb-2' htmlFor='username'>
           Nombre de usuario:
@@ -97,6 +93,19 @@ function Login({ apiRoute, routeDir }) {
             id='username'
             name='username'
             value={credentials.username}
+            onChange={handleInputChange}
+            className='mt-1 p-2 border rounded w-full bg-text'
+          />
+        </label>
+      </div>
+      <div className='mb-4'>
+        <label className='block text-primary-700 text-sm mb-2' htmlFor='email'>
+          Correo electrónico:
+          <input
+            type='email'
+            id='email'
+            name='email'
+            value={credentials.email}
             onChange={handleInputChange}
             className='mt-1 p-2 border rounded w-full bg-text'
           />
@@ -115,23 +124,25 @@ function Login({ apiRoute, routeDir }) {
           />
         </label>
       </div>
-      <div className="flex justify-between">
-          <Link href="../register" className="align-start text-xs font-thin text-primary hover:underline">¿Aún no tienes una cuenta? Crear una cuenta</Link>
+      <div className='flex justify-between'>
+        <Link href='/' className='align-start text-xs font-thin text-primary hover:underline'>
+          ¿Ya tienes una cuenta? Inicia sesión
+        </Link>
       </div>
       <button
         type='submit'
-        onClick={handleLogin}
+        onClick={handleRegister}
         disabled={isLoading}
-        className='bg-tertiary text-white p-2 rounded  hover:bg-secondary transition duration-300'
+        className='bg-tertiary text-white p-2 rounded hover:bg-secondary transition duration-300'
       >
-        {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+        {isLoading ? 'Registrando...' : 'Registrarse'}
       </button>
       
       {isErrorModalVisible && (
-        <Modal message={"Usuario o contraseña incorrectos. Inténtalo de nuevo"} onClose={() => setErrorModalVisible(false)} />
+        <Modal message={'Error en el registro. Inténtalo de nuevo'} onClose={() => setErrorModalVisible(false)} />
       )}
     </div>
   );
 }
 
-export default Login;
+export default Register;

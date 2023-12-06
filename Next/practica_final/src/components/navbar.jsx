@@ -16,7 +16,6 @@ function NavBar() {
         <NavItem href='/'>Home</NavItem>
         <NavItem href='/admin'>Administradores</NavItem>
         <NavItem href='/registeredUser'>Usuarios registrados</NavItem>
-        <NavItem href='/anonymousUser'>Usuarios no registrados</NavItem>
         <NavItem href='/commerce'>Comercio</NavItem>
       </ul>
 
@@ -50,7 +49,6 @@ const MobileSidebar = ({ closeSidebar }) => (
       <NavItem href='/'>Home</NavItem>
       <NavItem href='/admin'>Administradores</NavItem>
       <NavItem href='/registeredUser'>Usuarios registrados</NavItem>
-      <NavItem href='/anonymousUser'>Usuarios no registrados</NavItem>
       <NavItem href='/commerce'>Comercio</NavItem>
     </ul>
   </div>

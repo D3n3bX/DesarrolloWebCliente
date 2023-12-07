@@ -1,5 +1,5 @@
 "use client"
-import Register from "@/components/register";
+import Register from "@/components/Register";
 function RegisterPage() {
     
     function handleLogin() {
@@ -12,7 +12,7 @@ function RegisterPage() {
                 <Register
                 onLogin={handleLogin}
                 apiRoute='api/unregisteredUser/'
-                routeDir='admin/adminLogged'
+                routeDir='../registeredUser'
                 />
             </div>
         </div>

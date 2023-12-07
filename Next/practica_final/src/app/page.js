@@ -1,5 +1,4 @@
 'use client'
-import Login from "@/components/login";
 
 export default function Home() {
 
@@ -24,21 +23,6 @@ export default function Home() {
         <h2 className="text-2xl font-bold mb-4"> Comercios destacadas de la semana</h2>
         {/* Agrega aquí el contenido de comercios destacados */}
       </section>
-
-      <section id="registro-login" className="text-center py-8">
-        <div>
-            <h2 className="text-2xl font-bold mb-4">Regístrate o Inicia Sesión</h2>
-            {/* Agrega aquí tus botones de registro e inicio de sesión */}
-            <div className='min-h-screen flex items-center justify-center'>
-              <Login
-                onLogin={handleLogin}
-                apiRoute='api/registeredUser/'
-                routeDir='/registeredUser'
-              />
-            </div>
-        </div>
-      </section>
-
       
     </div>
   );

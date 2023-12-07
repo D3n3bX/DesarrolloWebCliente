@@ -16,14 +16,24 @@ export async function POST(request) {
     try {
         const users = JSON.parse(readFileSync('jsonFiles/user.json')); // Leo los datos de los users desde un archivo JSON
 
-        const { username, password, email } = await request.json(); // Obtengo los credenciales (username, password y email) desde el cuerpo de la solicitud
+        const { username, password, email, Nombre, Edad, Ciudad, Intereses, PermiteRecibirOfertas } = await request.json(); // Obtengo los credenciales (username, password y email) desde el cuerpo de la solicitud
 
         // Compruebo si el usuario ya existe
         if (users.find((user) => user.username === username)) {
             return NextResponse.json({ message: 'El usuario ya existe' }, { status: 400 });
         }
         
-        const newUser = { id: users.length + 1, username, password, email }; // Creo un nuevo usaurio con los datos indicados
+        const newUser = {
+          id: users.length + 1,
+          username,
+          password,
+          email,
+          Nombre,
+          Edad,
+          Ciudad,
+          Intereses: Intereses.split(',').map((interes) => interes.trim()), // Convierto la cadena de intereses en un array
+          PermiteRecibirOfertas,
+        };        
         users.push(newUser); // Añado el nuevo usuario
 
         await writeFileSync('jsonFiles/user.json', JSON.stringify(users, null, 2)); // Escribo los datos actualizados en el archivo JSON
@@ -43,7 +53,7 @@ export async function POST(request) {
     - request: Objeto de solicitud HTTP
     - params: Parámetros de ruta (puede no ser necesario en este contexto)
   Return:
-    - Respuesta JSON indicando un mensaje "OK"
+    - Respuesta JSON indicando un mensaje 'OK'
 */
 export async function GET(request, { params }) {
   console.log('Estoy en GET');
@@ -51,7 +61,7 @@ export async function GET(request, { params }) {
   const { searchParams } = new URL(request.url); // Obtengo los parámetros de consulta desde la URL
   const username = searchParams.get('username');
 
-  return NextResponse.json({ message: 'OK' }); // Proceso la solicitud GET y retorno una respuesta JSON con un mensaje "OK"
+  return NextResponse.json({ message: 'OK' }); // Proceso la solicitud GET y retorno una respuesta JSON con un mensaje 'OK'
 }
 
 /*
@@ -61,10 +71,10 @@ export async function GET(request, { params }) {
     Parámetros:
         - request: Objeto de solicitud HTTP
     Return:
-        - Respuesta JSON indicando un mensaje "Actualizando datos"
+        - Respuesta JSON indicando un mensaje 'Actualizando datos'
 */
 export function PUT() {
     return NextResponse.json({
-        message: "Actualizando datos"
+        message: 'Actualizando datos'
     })
 }

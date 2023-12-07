@@ -1,0 +1,24 @@
+[
+    {
+      "NombreComercio": "Tienda XYZ",
+      "CIF": "A12345678",
+      "Direccion": "Calle Principal, 123",
+      "Email": "tienda.xyz@example.com",
+      "TelefonoContacto": "123-456-789"
+    },
+    {
+      "NombreComercio": "Supermercado ABC",
+      "CIF": "B87654321",
+      "Direccion": "Avenida Central, 456",
+      "Email": "supermercado.abc@example.com",
+      "TelefonoContacto": "987-654-321"
+    },
+    {
+      "NombreComercio": "Librería LMN",
+      "CIF": "C56789012",
+      "Direccion": "Plaza del Libro, 789",
+      "Email": "libreria.lmn@example.com",
+      "TelefonoContacto": "456-789-012"
+    }
+  ]
+  

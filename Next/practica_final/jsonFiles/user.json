@@ -3,36 +3,104 @@
     "id": 1,
     "username": "user1",
     "password": "password1",
-    "email": "user1@example.com"
+    "email": "user1@example.com",
+    "Nombre": "Juan Pérez",
+    "Edad": 25,
+    "Ciudad": "Ciudad de México",
+    "Intereses": [
+      "Deportes",
+      "Música",
+      "Viajes"
+    ],
+    "PermiteRecibirOfertas": false
   },
   {
     "id": 2,
     "username": "user2",
     "password": "password2",
-    "email": "user2@example.com"
+    "email": "user2@example.com",
+    "Nombre": "María Rodríguez",
+    "Edad": 30,
+    "Ciudad": "Buenos Aires",
+    "Intereses": [
+      "Arte",
+      "Tecnología",
+      "Libros"
+    ],
+    "PermiteRecibirOfertas": false
   },
   {
     "id": 3,
     "username": "user3",
     "password": "password3",
-    "email": "user3@example.com"
+    "email": "user3@example.com",
+    "Nombre": "Carlos García",
+    "Edad": 22,
+    "Ciudad": "Madrid",
+    "Intereses": [
+      "Cine",
+      "Gastronomía",
+      "Fotografía"
+    ],
+    "PermiteRecibirOfertas": false
   },
   {
     "id": 4,
     "username": "user4",
     "password": "password4",
-    "email": "user4@example.com"
+    "email": "user4@example.com",
+    "Nombre": "Ana Silva",
+    "Edad": 28,
+    "Ciudad": "São Paulo",
+    "Intereses": [
+      "Moda",
+      "Deportes",
+      "Animales"
+    ],
+    "PermiteRecibirOfertas": false
   },
   {
     "id": 5,
     "username": "user5",
     "password": "password5",
-    "email": "user5@example.com"
+    "email": "user5@example.com",
+    "Nombre": "Diego López",
+    "Edad": 26,
+    "Ciudad": "Lima",
+    "Intereses": [
+      "Ciencia",
+      "Videojuegos",
+      "Viajes"
+    ],
+    "PermiteRecibirOfertas": false
   },
   {
     "id": 6,
     "username": "user6",
     "password": "password6",
-    "email": "user6@example.com"
+    "email": "user6@example.com",
+    "Nombre": "Laura Martínez",
+    "Edad": 24,
+    "Ciudad": "Bogotá",
+    "Intereses": [
+      "Música",
+      "Arte",
+      "Deportes"
+    ],
+    "PermiteRecibirOfertas": false
+  },
+  {
+    "id": 7,
+    "username": "user7",
+    "password": "",
+    "email": "user7@example.com",
+    "Nombre": "Pedro Fernández",
+    "Edad": "28",
+    "Ciudad": "Barcelona",
+    "Intereses": [
+      "Deportes",
+      "Arte"
+    ],
+    "PermiteRecibirOfertas": false
   }
 ]

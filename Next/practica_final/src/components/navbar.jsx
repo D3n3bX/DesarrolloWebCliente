@@ -10,13 +10,24 @@ function NavBar() {
   };
 
   return (
-    <nav className='bg-secondary p-3 fixed w-full z-50 transition-all duration-300'>
+    <nav className='bg-secondary p-3 fixed w-full z-50 flex items-center justify-between'>
+      {/* Título a la izquierda */}
+      <div className='text-text text-2xl'>
+        CityHub
+      </div>
+
       {/* Menú visible en pantallas grandes */}
-      <ul className='flex-wrap justify-center gap-6 hidden lg:flex'>
+      <ul className='gap-6 hidden lg:flex'>
         <NavItem href='/'>Home</NavItem>
         <NavItem href='/admin'>Administradores</NavItem>
         <NavItem href='/registeredUser'>Usuarios registrados</NavItem>
         <NavItem href='/commerce'>Comercio</NavItem>
+      </ul>
+
+      {/* Iniciar sesión y registrarse a la derecha */}
+      <ul className='hidden lg:flex gap-6'>
+        <NavItem href='/loginUser'>Iniciar sesión</NavItem>
+        <NavItem href='/registerUser'>Registrarse</NavItem>
       </ul>
 
       {/* Sidebar para pantallas pequeñas */}
@@ -50,6 +61,8 @@ const MobileSidebar = ({ closeSidebar }) => (
       <NavItem href='/admin'>Administradores</NavItem>
       <NavItem href='/registeredUser'>Usuarios registrados</NavItem>
       <NavItem href='/commerce'>Comercio</NavItem>
+      <NavItem href='/loginUser'>Iniciar sesión</NavItem>
+      <NavItem href='/registerUser'>Registrarse</NavItem>
     </ul>
   </div>
 );

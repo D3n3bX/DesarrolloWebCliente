@@ -17,10 +17,13 @@ export async function POST(request) {
     const users = JSON.parse(readFileSync('jsonFiles/user.json')); // Leo los datos de los users desde un archivo JSON
     const { username, password } = await request.json(); // Obtengo los credenciales (username y password) desde el cuerpo de la solicitud
 
+    const foundUser = users.find((user) => user.username === username && user.password === password);
+    console.log(foundUser)
     // Compruebo si los credenciales coinciden con algún useristrador
-    if (users.find((user) => user.username === username && user.password === password)) { // Los credenciales coinciden con algún user
+    if (foundUser) { // Los credenciales coinciden con algún user
       console.log('Usuario correcto');
-      return NextResponse.json({ message: "OK" }); // Devuelvo una respuesta JSON
+      const { id } = foundUser; // Obtengo el id del administrador que ha iniciado sesón
+      return NextResponse.json({ id, message: "OK" }); // Devuelvo una respuesta JSON con el id del administrador
     } 
     else { // Las credenciales no son correctas
       console.log('Usuario no correcto');

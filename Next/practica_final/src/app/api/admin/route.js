@@ -17,11 +17,14 @@ export async function POST(request) {
     const admins = JSON.parse(readFileSync('jsonFiles/admin.json')); // Leo los datos de los administradores desde un archivo JSON
     const { username, password } = await request.json(); // Obtengo los credenciales (username y password) desde el cuerpo de la solicitud
 
+    const foundAdmin = admins.find((admin) => admin.username === username && admin.password === password);
+
     // Compruebo si los credenciales coinciden con algún administrador
-    if (admins.find((admin) => admin.username === username && admin.password === password)) { // Los credenciales coinciden con algún admin
+    if (foundAdmin) { // Los credenciales coinciden con algún admin
       console.log('Usuario correcto');
-      return NextResponse.json({ message: "OK" }); // Devuelvo una respuesta JSON
-    } 
+      const { id } = foundAdmin; // Obtengo el id del administrador que ha iniciado sesón
+      return NextResponse.json({ id, message: "OK" }); // Devuelvo una respuesta JSON con el id del administrador
+    }
     else { // Las credenciales no son correctas
       console.log('Usuario no correcto');
       
@@ -48,6 +51,6 @@ export async function GET(request, { params }) {
 
   const { searchParams } = new URL(request.url); // Obtengo los parámetros de consulta desde la URL
   const username = searchParams.get('username');
-
+  
   return NextResponse.json({ message: 'OK' }); // Proceso la solicitud GET y retorno una respuesta JSON con un mensaje "OK"
 }

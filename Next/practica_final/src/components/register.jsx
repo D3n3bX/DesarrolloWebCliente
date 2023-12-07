@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Modal from './modal';
+import Modal from './Modal';
 
 /*
   FUNCION
@@ -17,11 +17,16 @@ function Register({ apiRoute, routeDir }) {
 
   const router = useRouter(); // Creo un router que me permitirá redirigir al usuario a una página específica
 
-  // Creo un estado credenctials para almacenar el username, email y passwotrd que se introduzca
+  // Creo un estado credenctials para almacenar lso datos necesarios para crearse una cuenta 
   const [credentials, setCredentials] = useState({
     username: '',
     email: '',
     password: '',
+    Nombre: '',
+    Edad: 0,
+    Ciudad: '',
+    Intereses: '',
+    PermiteRecibirOfertas: false
   });
 
   const [isLoading, setLoading] = useState(false); // Creo un estado isLoading para indicar si se esta registrando o se ha finalizado dicho proceso
@@ -83,64 +88,131 @@ function Register({ apiRoute, routeDir }) {
   }
 
   return (
-    <div className='max-w-sm mx-auto mt-10 p-6 bg-quaternary shadow-md rounded-md'>
-      <h2 className='text-2xl font-semibold mb-4'>Registrarse</h2>
-      <div className='mb-4'>
-        <label className='block text-primary-700 text-sm mb-2' htmlFor='username'>
-          Nombre de usuario:
-          <input
-            type='text'
-            id='username'
-            name='username'
-            value={credentials.username}
-            onChange={handleInputChange}
-            className='mt-1 p-2 border rounded w-full bg-text'
-          />
-        </label>
+    <div className='h-screen w-screen flex flex-col justify-center items-center p-6 bg-tertiary'>
+      <div className='max-w-full mx-0 p-6 bg-quaternary shadow-md rounded-md'>
+        <h2 className='text-2xl font-semibold mb-4'>Registrarse</h2>
+        <div className='mb-4'>
+          <label className='block text-primary-700 text-sm mb-2' htmlFor='username'>
+            Nombre de usuario:
+            <input
+              type='text'
+              id='username'
+              name='username'
+              value={credentials.username}
+              onChange={handleInputChange}
+              className='mt-1 p-2 border rounded w-full bg-text'
+            />
+          </label>
+        </div>
+        <div className='mb-4'>
+          <label className='block text-primary-700 text-sm mb-2' htmlFor='email'>
+            Correo electrónico:
+            <input
+              type='email'
+              id='email'
+              name='email'
+              value={credentials.email}
+              onChange={handleInputChange}
+              className='mt-1 p-2 border rounded w-full bg-text'
+            />
+          </label>
+        </div>
+        <div className='mb-4'>
+          <label className='block text-primary-700 text-sm mb-2' htmlFor='password'>
+            Contraseña:
+            <input
+              type='password'
+              id='password'
+              name='password'
+              value={credentials.password}
+              onChange={handleInputChange}
+              className='mt-1 p-2 border rounded w-full bg-text'
+            />
+          </label>
+        </div>
+        <div className='mb-4'>
+          <label className='block text-primary-700 text-sm mb-2' htmlFor='Nombre'>
+            Nombre:
+            <input
+              type='text'
+              id='Nombre'
+              name='Nombre'
+              value={credentials.Nombre}
+              onChange={handleInputChange}
+              className='mt-1 p-2 border rounded w-full bg-text'
+            />
+          </label>
+        </div>
+        <div className='mb-4'>
+          <label className='block text-primary-700 text-sm mb-2' htmlFor='Edad'>
+            Edad:
+            <input
+              type='number'
+              id='Edad'
+              name='Edad'
+              value={credentials.Edad}
+              onChange={handleInputChange}
+              className='mt-1 p-2 border rounded w-full bg-text'
+            />
+          </label>
+        </div>
+        <div className='mb-4'>
+          <label className='block text-primary-700 text-sm mb-2' htmlFor='Ciudad'>
+            Ciudad:
+            <input
+              type='text'
+              id='Ciudad'
+              name='Ciudad'
+              value={credentials.Ciudad}
+              onChange={handleInputChange}
+              className='mt-1 p-2 border rounded w-full bg-text'
+            />
+          </label>
+        </div>
+        <div className='mb-4'>
+          <label className='block text-primary-700 text-sm mb-2' htmlFor='Intereses'>
+            Intereses:
+            <input
+              type='text'
+              id='Intereses'
+              name='Intereses'
+              value={credentials.Intereses}
+              onChange={handleInputChange}
+              className='mt-1 p-2 border rounded w-full bg-text'
+            />
+          </label>
+        </div>
+        <div className='mb-4'>
+          <label className='block text-primary-700 text-sm mb-2' htmlFor='PermiteRecibirOfertas'>
+            Permitir recibir ofertas:
+            <input
+              type='checkbox'
+              id='PermiteRecibirOfertas'
+              name='PermiteRecibirOfertas'
+              checked={credentials.PermiteRecibirOfertas}
+              onChange={handleInputChange}
+              className='mt-1 p-2 border rounded w-full bg-text'
+            />
+          </label>
+        </div>
+        <div className='flex justify-between'>
+          <Link href='../loginUser' className='align-start text-xs font-thin text-primary hover:underline'>
+            ¿Ya tienes una cuenta? Inicia sesión
+          </Link>
+        </div>
+        <button
+          type='submit'
+          onClick={handleRegister}
+          disabled={isLoading}
+          className='bg-tertiary text-white p-2 rounded hover:bg-secondary transition duration-300'
+        >
+          {isLoading ? 'Registrando...' : 'Registrarse'}
+        </button>
+        
+        {isErrorModalVisible && (
+          <Modal message={'Error en el registro. Inténtalo de nuevo'} onClose={() => setErrorModalVisible(false)} />
+        )}
       </div>
-      <div className='mb-4'>
-        <label className='block text-primary-700 text-sm mb-2' htmlFor='email'>
-          Correo electrónico:
-          <input
-            type='email'
-            id='email'
-            name='email'
-            value={credentials.email}
-            onChange={handleInputChange}
-            className='mt-1 p-2 border rounded w-full bg-text'
-          />
-        </label>
-      </div>
-      <div className='mb-4'>
-        <label className='block text-primary-700 text-sm mb-2' htmlFor='password'>
-          Contraseña:
-          <input
-            type='password'
-            id='password'
-            name='password'
-            value={credentials.password}
-            onChange={handleInputChange}
-            className='mt-1 p-2 border rounded w-full bg-text'
-          />
-        </label>
-      </div>
-      <div className='flex justify-between'>
-        <Link href='/' className='align-start text-xs font-thin text-primary hover:underline'>
-          ¿Ya tienes una cuenta? Inicia sesión
-        </Link>
-      </div>
-      <button
-        type='submit'
-        onClick={handleRegister}
-        disabled={isLoading}
-        className='bg-tertiary text-white p-2 rounded hover:bg-secondary transition duration-300'
-      >
-        {isLoading ? 'Registrando...' : 'Registrarse'}
-      </button>
-      
-      {isErrorModalVisible && (
-        <Modal message={'Error en el registro. Inténtalo de nuevo'} onClose={() => setErrorModalVisible(false)} />
-      )}
     </div>
   );
 }

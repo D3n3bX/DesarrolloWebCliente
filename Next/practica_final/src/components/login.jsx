@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Modal from './modal';
+import Modal from './Modal';
 
 /*
   FUNCION
-    Login({apiRoute, routeDir})
+    Login({apiRoute, routeDir, onLogin})
     Cualquier tipo de usuario ya sea admin, comercio o user se puede logar y autenticarse
     Parámetros:
       - apiRoute: ruta de la API que se encarga del login
       - routeDir: direccion a donde redirigira despues de loguears
+      - onLogin: 
     Return:
       - Formulario para iniciar sesión
 */
-function Login({ apiRoute, routeDir }) {
+function Login({ apiRoute, routeDir, onLogin }) {
 
   const router = useRouter(); // Creo un router que me permitirá redirigir al usuario a una página específica
   
@@ -71,10 +72,14 @@ function Login({ apiRoute, routeDir }) {
         body: JSON.stringify(credentials), // Paso los credenciales que se han introducido
       });
 
+      const data = await response.json();
+
       setLoading(false); // Finalizo el estado de carga después de la solicitud
       
       if (response.ok) { // Los credenciales son correctos
         console.log('Login exitoso');
+        console.log(data);
+        onLogin(data.id);
         router.push(routeDir); // Redirijo al usuario a la página específica después de iniciar sesión
       } 
       else { // Los credenciales son inválidos
@@ -87,49 +92,51 @@ function Login({ apiRoute, routeDir }) {
   }
 
   return (
-    <div className='max-w-sm mx-auto mt-10 p-6 bg-quaternary shadow-md rounded-md'>
-      <h2 className='text-2xl font-semibold mb-4'>Iniciar Sesión</h2>
-      <div className='mb-4'>
-        <label className='block text-primary-700 text-sm mb-2' htmlFor='username'>
-          Nombre de usuario:
-          <input
-            type='text'
-            id='username'
-            name='username'
-            value={credentials.username}
-            onChange={handleInputChange}
-            className='mt-1 p-2 border rounded w-full bg-text'
-          />
-        </label>
+    <div className='h-screen w-screen flex flex-col justify-center items-center p-6 bg-tertiary'>
+      <div className='max-w-sm mx-auto p-6 bg-quaternary shadow-md rounded-md'>
+        <h2 className='text-2xl font-semibold mb-4'>Iniciar Sesión</h2>
+        <div className='mb-4'>
+          <label className='block text-primary-700 text-sm mb-2' htmlFor='username'>
+            Nombre de usuario:
+            <input
+              type='text'
+              id='username'
+              name='username'
+              value={credentials.username}
+              onChange={handleInputChange}
+              className='mt-1 p-2 border rounded w-full bg-text'
+            />
+          </label>
+        </div>
+        <div className='mb-4'>
+          <label className='block text-primary-700 text-sm mb-2' htmlFor='password'>
+            Contraseña:
+            <input
+              type='password'
+              id='password'
+              name='password'
+              value={credentials.password}
+              onChange={handleInputChange}
+              className='mt-1 p-2 border rounded w-full bg-text'
+            />
+          </label>
+        </div>
+        <div className="flex justify-between">
+          <Link href="../registerUser" className="align-start text-xs font-thin text-primary hover:underline">¿Aún no tienes una cuenta? Crear una cuenta</Link>
+        </div>
+        <button
+          type='submit'
+          onClick={handleLogin}
+          disabled={isLoading}
+          className='bg-tertiary text-white p-2 rounded hover:bg-secondary transition duration-300'
+        >
+          {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+        </button>
+
+        {isErrorModalVisible && (
+          <Modal message={"Usuario o contraseña incorrectos. Inténtalo de nuevo"} onClose={() => setErrorModalVisible(false)} />
+        )}
       </div>
-      <div className='mb-4'>
-        <label className='block text-primary-700 text-sm mb-2' htmlFor='password'>
-          Contraseña:
-          <input
-            type='password'
-            id='password'
-            name='password'
-            value={credentials.password}
-            onChange={handleInputChange}
-            className='mt-1 p-2 border rounded w-full bg-text'
-          />
-        </label>
-      </div>
-      <div className="flex justify-between">
-          <Link href="../register" className="align-start text-xs font-thin text-primary hover:underline">¿Aún no tienes una cuenta? Crear una cuenta</Link>
-      </div>
-      <button
-        type='submit'
-        onClick={handleLogin}
-        disabled={isLoading}
-        className='bg-tertiary text-white p-2 rounded  hover:bg-secondary transition duration-300'
-      >
-        {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-      </button>
-      
-      {isErrorModalVisible && (
-        <Modal message={"Usuario o contraseña incorrectos. Inténtalo de nuevo"} onClose={() => setErrorModalVisible(false)} />
-      )}
     </div>
   );
 }

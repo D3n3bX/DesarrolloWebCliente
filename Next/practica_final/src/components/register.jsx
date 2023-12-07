@@ -13,7 +13,7 @@ import Modal from './Modal';
     Return:
       - Formulario para registrarse
 */
-function Register({ apiRoute, routeDir }) {
+function Register({ apiRoute, routeDir}) {
 
   const router = useRouter(); // Creo un router que me permitirá redirigir al usuario a una página específica
 

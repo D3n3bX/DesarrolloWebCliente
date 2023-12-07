@@ -14,19 +14,19 @@ export async function POST(request) {
     console.log('Estoy en POST');
   
     try {
-        const users = JSON.parse(readFileSync('jsonFiles/commerce.json')); // Leo los datos de los users desde un archivo JSON
+        const commerces = JSON.parse(readFileSync('jsonFiles/commerce.json')); // Leo los datos de los commerces desde un archivo JSON
 
-        const { NombreComercio, CIF, Direccion, Email, Telefono } = await request.json(); // Obtengo los credenciales (username, password y email) desde el cuerpo de la solicitud
+        const { NombreComercio, CIF, Direccion, Email, Telefono } = await request.json(); // Obtengo los credenciales (NombreComercio, password y email) desde el cuerpo de la solicitud
 
         // Compruebo si el usuario ya existe
-        if (users.find((user) => user.username === username)) {
+        if (commerces.find((commerce) => commerce.NombreComercio === NombreComercio)) {
             return NextResponse.json({ message: 'El comercio ya existe' }, { status: 400 });
         }
         
-        const newUser = {id: users.length + 1, NombreComercio, CIF, Direccion, Email, Telefono};        
-        users.push(newUser); // Añado el nuevo usuario
+        const newcommerce = {id: commerces.length + 1, NombreComercio, CIF, Direccion, Email, Telefono};        
+        commerces.push(newcommerce); // Añado el nuevo usuario
 
-        await writeFileSync('jsonFiles/commerce.json', JSON.stringify(users, null, 2)); // Escribo los datos actualizados en el archivo JSON
+        await writeFileSync('jsonFiles/commerce.json', JSON.stringify(commerces, null, 2)); // Escribo los datos actualizados en el archivo JSON
 
         return NextResponse.json({ message: 'OK' }); // Devuelvo una respuesta JSON
     } catch (error) {
@@ -49,7 +49,7 @@ export async function GET(request, { params }) {
   console.log('Estoy en GET');
 
   const { searchParams } = new URL(request.url); // Obtengo los parámetros de consulta desde la URL
-  const username = searchParams.get('username');
+  const CIF = searchParams.get('CIF');
 
   return NextResponse.json({ message: 'OK' }); // Proceso la solicitud GET y retorno una respuesta JSON con un mensaje 'OK'
 }

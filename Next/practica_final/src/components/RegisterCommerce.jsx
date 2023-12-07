@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Modal from './Modal';
 
-function RegisterCommerce({ apiRoute }) {
-  const router = useRouter();
+function RegisterCommerce({ apiRoute, routeDir }) {
 
+  const router = useRouter(); // Creo un router que me permitirá redirigir al usuario a una página específica
+  
   const [commerceInfo, setCommerceInfo] = useState({
     NombreComercio: '',
     CIF: '',
@@ -43,6 +44,7 @@ function RegisterCommerce({ apiRoute }) {
 
       if (response.ok) {
         console.log('Registro de comercio exitoso');
+        router.push(routeDir);
       } else {
         console.error('Error en el registro del comercio');
         setErrorModalVisible(true);
@@ -120,11 +122,6 @@ function RegisterCommerce({ apiRoute }) {
               className='mt-1 p-2 border rounded w-full bg-text'
             />
           </label>
-        </div>
-        <div className='flex justify-between'>
-          <Link href='../loginUser' className='align-start text-xs font-thin text-primary hover:underline'>
-            ¿Ya tienes una cuenta? Inicia sesión
-          </Link>
         </div>
         <button
           type='submit'

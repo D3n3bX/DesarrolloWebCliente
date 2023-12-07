@@ -9,8 +9,8 @@ import Modal from './Modal';
     Cualquier tipo de usuario ya sea admin, comercio o user se puede logar y autenticarse
     Parámetros:
       - apiRoute: ruta de la API que se encarga del login
-      - routeDir: direccion a donde redirigira despues de loguears
-      - onLogin: 
+      - routeDir: direccion a donde redirigira despues de loguearse
+      - onLogin: callback que permite devolver variables, en este caso el id
     Return:
       - Formulario para iniciar sesión
 */

@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import RegisterCommerce from '@/components/RegsiterCommerce';
 
 function AdminLoggedPage() {
     const [username, setUsername] = useState('');
@@ -31,19 +32,29 @@ function AdminLoggedPage() {
       }
   }, [router.query?.adminId]);
   
+  function handleLogin() {
+    setLoggedIn(true);
+  }
 
-    return (
-        <div className='min-h-screen flex items-center justify-center'>
-          <div className='bg-secondary p-8 shadow-md rounded-md'>
-            <h1>Bienvenido, {username}!</h1>
-            <div className="additional-content">
-              {/* Agrega contenido adicional aquí */}
-              <p>¿Qué deseas hacer?</p>
-              
-            </div>
+  return (
+      <div className='min-h-screen flex items-center justify-center'>
+        <div className='bg-secondary p-8 shadow-md rounded-md'>
+          <h1>Bienvenido, {username}!</h1>
+          <div className="additional-content">
+            {/* Agrega contenido adicional aquí */}
+            <p>¿Qué deseas hacer?</p>
+            <div className='min-h-screen flex items-center justify-center'>
+              <div className='bg-secondary p-8 shadow-md rounded-md'>
+                  <RegisterCommerce
+                  onLogin={handleLogin}
+                  apiRoute='api/commerce/'
+                  />
+              </div>
+          </div>
           </div>
         </div>
-      );
+      </div>
+    );
 }
 
 export default AdminLoggedPage;

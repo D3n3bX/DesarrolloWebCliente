@@ -4,23 +4,49 @@
     "NombreComercio": "Tienda XYZ",
     "CIF": "A12345678",
     "Direccion": "Calle Principal, 123",
+    "Ciudad": "Madrid",
     "Email": "tienda.xyz@example.com",
-    "Telefono": "123456789"
+    "Telefono": "123456789",
+    "Resumen": "Tienda de videojuegos",
+    "Actividad": "Videojuegos",
+    "Scoring": "3.8",
+    "NumeroPuntuacion": "23",
+    "Reseñas": [
+      "Muy buena la tienda",
+      "He conseguido el juego que quería"
+    ]
   },
   {
     "id": 2,
     "NombreComercio": "Supermercado ABC",
     "CIF": "B87654321",
     "Direccion": "Avenida Central, 456",
+    "Ciudad": "Ciudad de México",
     "Email": "supermercado.abc@example.com",
-    "Telefono": "987654321"
+    "Telefono": "987654321",
+    "Resumen": "Tienda de alimentación",
+    "Actividad": "Alimentación",
+    "Scoring": "4",
+    "NumeroPuntuacion": "13",
+    "Reseñas": [
+      "Muy buena la tienda"
+    ]
   },
   {
     "id": 3,
     "NombreComercio": "Librería LMN",
     "CIF": "C56789012",
     "Direccion": "Plaza del Libro, 789",
+    "Ciudad": "Barcelona",
     "Email": "libreria.lmn@example.com",
-    "Telefono": "456789012"
+    "Telefono": "456789012",
+    "Resumen": "Tienda de libros",
+    "Actividad": "Cultura",
+    "Scoring": "4.8",
+    "NumeroPuntuacion": "5",
+    "Reseñas": [
+      "Muy buena la tienda",
+      "Tienen una gran variedad de libros"
+    ]
   }
 ]

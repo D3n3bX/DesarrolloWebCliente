@@ -33,16 +33,19 @@ function AdminLoggedPage() {
   }, [router.query?.adminId]);
   
   return (
-      <div className='min-h-screen flex items-center justify-center'>
-        <div className='bg-secondary p-8 shadow-md rounded-md'>
-          <h1>Bienvenido, {username}!</h1>
-          <div className="additional-content">
-            {/* Agrega contenido adicional aquí */}
-            <p>¿Qué deseas hacer?</p>
-            <Link href="/admin/adminLogged/registerCommerce">Registrar un comercio</Link>
-          </div>
+    <div className='h-screen w-screen flex flex-col justify-center items-center p-6 bg-tertiary'>
+      <div className='max-w-full mx-0 p-6 bg-quaternary shadow-md rounded-md'>
+            <h1>Bienvenido, {username}!</h1>
+            <div className="additional-content">
+              {/* Agrega contenido adicional aquí */}
+              <p>¿Qué deseas hacer?</p>
+              <ul>
+                <Link href="/admin/adminLogged/registerCommerce">Registrar un comercio</Link>
+                <Link href="/admin/adminLogged/deleteCommerce">Eliminar un comercio</Link>
+              </ul>
+            </div>
         </div>
-      </div>
+    </div>
     );
 }
 

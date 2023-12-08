@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import Modal from './Modal';
 
 function RegisterCommerce({ apiRoute, routeDir }) {

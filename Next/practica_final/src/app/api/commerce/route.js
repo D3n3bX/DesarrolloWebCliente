@@ -16,7 +16,7 @@ export async function POST(request) {
     try {
         const commerces = JSON.parse(readFileSync('jsonFiles/commerce.json')); // Leo los datos de los commerces desde un archivo JSON
 
-        const { NombreComercio, CIF, Direccion, Email, Telefono } = await request.json(); // Obtengo los credenciales (NombreComercio, password y email) desde el cuerpo de la solicitud
+        const { NombreComercio, CIF, Direccion, Email, Telefono } = await request.json(); // Obtengo los credenciales  desde el cuerpo de la solicitud
 
         // Compruebo si el usuario ya existe
         if (commerces.find((commerce) => commerce.NombreComercio === NombreComercio)) {
@@ -67,4 +67,42 @@ export function PUT() {
     return NextResponse.json({
         message: 'Actualizando datos'
     })
+}
+
+/*
+  FUNCION
+    DELETE(request, { params })
+    Maneja las solicitudes HTTP DELETE.
+  Parámetros:
+    - request: Objeto de solicitud HTTP
+  Return:
+    - Respuesta JSON indicando el resultado de la eliminación
+*/
+export async function DELETE(request) {
+  console.log('Estoy en DELETE');
+
+  try {
+      const commerces = JSON.parse(readFileSync('jsonFiles/commerce.json')); // Leo los datos de los commercios desde un archivo JSON
+
+      const { NombreComercio } = await request.json(); // Obtengo el NombreComercio del parámetro de ruta
+
+      
+      const indexToDelete = commerces.findIndex((commerce) => commerce.NombreComercio === NombreComercio); // Busco el comercio por NombreComercio
+
+      // Comprueba si el comercio existe
+      if (indexToDelete === -1) {
+          return NextResponse.json({ message: 'El comercio no existe' }, { status: 404 });
+      }
+
+      // Elimina el comercio de la lista
+      commerces.splice(indexToDelete, 1);
+
+      // Escribe los datos actualizados en el archivo JSON
+      await writeFileSync('jsonFiles/commerce.json', JSON.stringify(commerces, null, 2));
+
+      return NextResponse.json({ message: 'Comercio eliminado correctamente' });
+  } catch (error) {
+      console.error('Error en el servidor:', error);
+      return NextResponse.json({ message: 'Error en el servidor' }, { status: 500 });
+  }
 }

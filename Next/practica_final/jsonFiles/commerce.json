@@ -15,12 +15,11 @@
       "Muy buena la tienda",
       "He conseguido el juego que quería",
       "Te atienden genial"
-    ],
-    "numEvaluations": 1
+    ]
   },
   {
     "id": 2,
-    "NombreComercio": "Supermercado_ABC",
+    "NombreComercio": "Supermercado ABC",
     "CIF": "B87654321",
     "Direccion": "Avenida Central, 456",
     "Ciudad": "Ciudad de México",

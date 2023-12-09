@@ -77,7 +77,7 @@ function Review({ apiRoute, routeDir }) {
     return (
         <div className='h-screen w-screen flex flex-col justify-center items-center p-6 bg-tertiary'>
             <div className='max-w-full mx-0 p-6 bg-quaternary shadow-md rounded-md'>
-                <h2 className='text-2xl font-semibold mb-4'>Deja tu revisión</h2>
+                <h2 className='text-2xl font-semibold mb-4'>Deja tu reseña</h2>
                 <div className='mb-4'>
                     <label className='block text-primary-700 text-sm mb-2' htmlFor='NombreComercio'>
                     Nombre de comercio:

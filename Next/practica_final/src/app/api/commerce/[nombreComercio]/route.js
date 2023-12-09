@@ -13,12 +13,12 @@ import { readFileSync } from 'fs';
     - Respuesta JSON indicando si el comercio fue encontrado o no
 */
 export async function GET(request, { params }) {
-  console.log('Estoy en GET');
+  console.log('Estoy en GET para encontrar un comercio');
 
   try {
-    const { NombreComercio } = params;
-    
-    const commerces = JSON.parse(await readFileSync('jsonFiles/commerce.json', 'utf-8'));
+    const NombreComercio = params.NombreComercio;
+    console.log('Nombre de comercio a buscar: ' + NombreComercio);
+    const commerces = JSON.parse(await readFileSync('jsonFiles/commerce.json', 'utf-8')); // Lee los datos de los comercios desde un archivo JSON
 
     const foundCommerce = commerces.find((commerce) => commerce.NombreComercio === NombreComercio);
 

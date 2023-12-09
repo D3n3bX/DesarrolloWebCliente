@@ -19,7 +19,7 @@ function LoginPage() {
       <div className='bg-secondary p-8 shadow-md rounded-md'>
         <Login
           onLogin={handleLogin}
-          apiRoute='api/registeredUser/'
+          apiRoute='/api/registeredUser/'
           routeDir='/registeredUser'
         />
       </div>

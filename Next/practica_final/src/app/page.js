@@ -1,6 +1,10 @@
 'use client'
+import React, { useState } from 'react';
+import SearchCommerce from '@/components/CommerceSearch';
 
 export default function Home() {
+
+  const [loggedIn, setLoggedIn] = useState(false);
 
   function handleLogin() {
     setLoggedIn(true);
@@ -8,22 +12,21 @@ export default function Home() {
 
   return (
     <div className="bg-quaternary min-h-screen flex flex-col justify-between">
-
-      <section id="banner" className="bg-secondary text-white text-center p-16"> {/* Aumenté el valor de py-12 a py-16 */}
-          <h1 className="text-4xl font-bold mb-4 text-text">Bienvenido a CityHub</h1>
-          <p className="text-lg">Encuentra y promociona comercios locales</p>
+      <section id="banner" className="bg-secondary text-white text-center p-16">
+        <h1 className="text-4xl font-bold mb-4 text-text">Bienvenido a CityHub</h1>
+        <p className="text-lg">Encuentra y promociona comercios locales</p>
       </section>
-      
+
       <section id="busqueda-comercios" className="text-center py-8">
-          <h2 className="text-2xl font-bold mb-4">Buscar Comercios</h2>
-          {/* Agrega aquí tu formulario de búsqueda */}
+        <h2 className="text-2xl font-bold mb-4">Buscar Comercios</h2>
+        <SearchCommerce apiRoute="/api/commerce/?NombreComercio=" routeDir="/tu-directorio-de-ruta" />
+        {/* Asegúrate de pasar las rutas correctas como props apiRoute y routeDir */}
       </section>
 
       <section id="comercios-destacados" className="text-center py-8">
         <h2 className="text-2xl font-bold mb-4"> Comercios destacadas de la semana</h2>
         {/* Agrega aquí el contenido de comercios destacados */}
       </section>
-      
     </div>
   );
 }

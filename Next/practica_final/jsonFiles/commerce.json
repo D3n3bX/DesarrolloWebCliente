@@ -9,16 +9,18 @@
     "Telefono": "123456789",
     "Resumen": "Tienda de videojuegos",
     "Actividad": "Videojuegos",
-    "Scoring": "3.8",
-    "NumeroPuntuacion": "23",
+    "Scoring": 3.67,
+    "NumeroPuntuacion": 30,
     "Reseñas": [
       "Muy buena la tienda",
-      "He conseguido el juego que quería"
-    ]
+      "He conseguido el juego que quería",
+      "Te atienden genial"
+    ],
+    "numEvaluations": 1
   },
   {
     "id": 2,
-    "NombreComercio": "Supermercado ABC",
+    "NombreComercio": "Supermercado_ABC",
     "CIF": "B87654321",
     "Direccion": "Avenida Central, 456",
     "Ciudad": "Ciudad de México",
@@ -26,8 +28,8 @@
     "Telefono": "987654321",
     "Resumen": "Tienda de alimentación",
     "Actividad": "Alimentación",
-    "Scoring": "4",
-    "NumeroPuntuacion": "13",
+    "Scoring": 4,
+    "NumeroPuntuacion": 13,
     "Reseñas": [
       "Muy buena la tienda"
     ]
@@ -42,8 +44,8 @@
     "Telefono": "456789012",
     "Resumen": "Tienda de libros",
     "Actividad": "Cultura",
-    "Scoring": "4.8",
-    "NumeroPuntuacion": "5",
+    "Scoring": 4.8,
+    "NumeroPuntuacion": 5,
     "Reseñas": [
       "Muy buena la tienda",
       "Tienen una gran variedad de libros"

@@ -35,7 +35,7 @@ function AdminLoggedPage() {
   return (
     <div className='h-screen w-screen flex flex-col justify-center items-center p-6 bg-tertiary'>
       <div className='max-w-full mx-0 p-6 bg-quaternary shadow-md rounded-md'>
-            <h1>Bienvenido, {username}!</h1>
+            <h1>Bienvenido, administrador!</h1>
             <div className="additional-content">
               {/* Agrega contenido adicional aquí */}
               <p>¿Qué deseas hacer?</p>

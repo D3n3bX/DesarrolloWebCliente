@@ -18,7 +18,7 @@ export async function POST(request) {
 
         const { NombreComercio, CIF, Direccion, Email, Telefono } = await request.json(); // Obtengo los credenciales  desde el cuerpo de la solicitud
 
-        // Compruebo si el usuario ya existe
+        // Compruebo si el comercio ya existe
         if (commerces.find((commerce) => commerce.NombreComercio === NombreComercio)) {
             return NextResponse.json({ message: 'El comercio ya existe' }, { status: 400 });
         }

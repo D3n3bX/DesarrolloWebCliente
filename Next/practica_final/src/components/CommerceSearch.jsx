@@ -46,7 +46,9 @@ function SearchCommerce({ apiRoute, routeDir }) {
 
   // JSX del componente SearchCommerce
   return (
-    <div>
+    <div className='h-screen w-screen flex flex-col justify-center items-center p-6 bg-tertiary'>
+      <div className='max-w-sm mx-auto p-6 bg-quaternary shadow-md rounded-md'>
+      <h2 className='text-2xl font-semibold mb-4'>Buscador</h2>
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -54,7 +56,11 @@ function SearchCommerce({ apiRoute, routeDir }) {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type="submit">Buscar</button>
+        <button 
+          type="submit" 
+          className='bg-tertiary text-white p-2 rounded hover:bg-secondary transition duration-300'>
+            Buscar
+        </button>
       </form>
 
       {searchResults.length > 0 && (
@@ -93,6 +99,7 @@ function SearchCommerce({ apiRoute, routeDir }) {
         </div>
       )}
     </div>
+  </div>
   );
 }
 

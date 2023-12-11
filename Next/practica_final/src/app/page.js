@@ -19,7 +19,6 @@ export default function Home() {
       </section>
 
       <section id="busqueda-comercios" className="text-center py-8">
-        <h2 className="text-2xl font-bold mb-4">Buscar Comercios</h2>
         <SearchCommerce />
         {/* Asegúrate de pasar las rutas correctas como props apiRoute y routeDir */}
       </section>

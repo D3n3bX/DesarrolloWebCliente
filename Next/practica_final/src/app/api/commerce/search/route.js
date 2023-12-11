@@ -11,8 +11,15 @@ export async function POST(request, { params }) {
         console.log('SearchParams:', searchParams);
             
         // Buscar el comercio por CIF
-        const foundCommerce = commerces.find((commerce) => commerce.NombreComercio === searchParams.searchTerm);
-        
+        const foundCommerce = commerces.find((commerce) => {
+            const searchTermLower = searchParams.searchTerm.toLowerCase();
+            return (
+              commerce.NombreComercio.toLowerCase().includes(searchTermLower) ||
+              commerce.Ciudad.toLowerCase().includes(searchTermLower) ||
+              commerce.Actividad.toLowerCase().includes(searchTermLower)
+            );
+          });
+
         console.log(foundCommerce);
         if (!foundCommerce) {
             return NextResponse.json({ error: 'Comercio no encontrado' }, { status: 404 });

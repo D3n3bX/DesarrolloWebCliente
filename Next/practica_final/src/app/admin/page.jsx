@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Login from '../../components/Login';
 
 /*
@@ -13,40 +13,42 @@ import Login from '../../components/Login';
 */
 function AdminPage() {
   
-    const [loggedIn, setLoggedIn] = useState(false); // Creo un estado loggedIn para indicar si se ha logeado o no
-    const [adminId, setAdminId] = useState(null); // Creo un estado adminId para indicar el id del administrador que ha iniciado sesión
-    /*
-      FUNCION (asíncrona)
-        handleLogin(id)
-        Maneja el intento de inicio de sesión al enviar una solicitud a la API de inicio de sesión
-      Parámetros:
-        - id: id del administrador que inicia sesión
-      Return:
-        - Realiza una solicitud a la API, maneja la respuesta y redirige al usuario si el inicio de sesión es exitoso
-    */
-    function handleLogin(id) {
-      console.log("id received in handleLogin: " + id);
-      setLoggedIn(true);
-      setAdminId(id);
+  const [adminInfo, setAdminInfo] = useState({ loggedIn: false, adminId: null }); // Creo un estado adminInfo para indicar si se ha hecho login y el adminId
+  const [routeDir, setRouteDir] = useState(''); // Creo un estado routeDir para indiacar a la ruta a la que se tiene que redirigir con su parámtero
+
+  useEffect(() => {
+    if (adminInfo.loggedIn && adminInfo.adminId) {
+      const routeDir = `/admin/adminLogged?adminId=${adminInfo.adminId}`;
+      setRouteDir(routeDir);
+      console.log("routeDir: " + routeDir);
     }
+  }, [adminInfo.loggedIn, adminInfo.adminId]);
 
-    console.log("adminId: " + adminId);
+  /*
+    FUNCION (asíncrona)
+      handleLogin(id)
+      Maneja el intento de inicio de sesión al enviar una solicitud a la API de inicio de sesión
+    Parámetros:
+      - id: id del administrador que inicia sesión
+    Return:
+      - Realiza una solicitud a la API, maneja la respuesta y redirige al usuario si el inicio de sesión es exitoso
+  */
+  async function handleLogin(id) {
+    console.log("id received in handleLogin: " + id);
+    setAdminInfo({ loggedIn: true, adminId: id });
+  }
 
-    const routeDir = `/admin/adminLogged?adminId=${adminId}`; // Obtengo la ruta para redirigirme a adminLoggedPage con el parámetro de adminId
-    console.log("routeDir: " + routeDir);
-
-    return (
-      <div className='min-h-screen flex items-center justify-center'>
-        <div className='bg-secondary p-8 shadow-md rounded-md'>
-        {console.log("adminId before render: " + adminId)}
-          <Login
-            onLogin={handleLogin}
-            apiRoute='api/admin/'
-            routeDir={routeDir} // Paso la url y como parámetro adminId
-          />
-        </div>
+  return (
+    <div className='min-h-screen flex items-center justify-center'>
+      <div className='bg-secondary p-8 shadow-md rounded-md'>
+        <Login
+          onLogin={handleLogin}
+          apiRoute='api/admin/'
+          routeDir={routeDir} // Paso la url y como parámetro adminId
+        />
       </div>
-    );
+    </div>
+  );
 }
 
 export default AdminPage;

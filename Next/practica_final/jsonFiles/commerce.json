@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "username": "TiendaXYZ",
     "NombreComercio": "Tienda XYZ",
     "CIF": "A12345678",
     "Direccion": "Calle Principal, 123",
@@ -19,6 +20,7 @@
   },
   {
     "id": 2,
+    "username": "SupermecadoABC",
     "NombreComercio": "Supermercado ABC",
     "CIF": "B87654321",
     "Direccion": "Avenida Central, 456",
@@ -35,6 +37,7 @@
   },
   {
     "id": 3,
+    "username": "LibreriaLMN",
     "NombreComercio": "Librería LMN",
     "CIF": "C56789012",
     "Direccion": "Plaza del Libro, 789",

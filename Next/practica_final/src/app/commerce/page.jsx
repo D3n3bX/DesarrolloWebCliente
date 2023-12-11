@@ -1,17 +1,23 @@
 'use client'
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import Login from '../../components/Login';
 
 function CommercePage() {
 
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [userId, setuserId] = useState(null);
+  const [commerceInfo, setCommerceInfo] = useState({ loggedIn: false, commerceId: null }); // Creo un estado adminInfo para indicar si se ha hecho login y el commerceId
+  const [routeDir, setRouteDir] = useState(''); // Creo un estado routeDir para indiacar a la ruta a la que se tiene que redirigir con su parámtero
+
+  useEffect(() => {
+    if (commerceInfo.loggedIn && commerceInfo.commerceId) {
+      const routeDir = `/commerce/commerceLogged?commerceId=${commerceInfo.commerceId}`;
+      setRouteDir(routeDir);
+      console.log("routeDir: " + routeDir);
+    }
+  }, [commerceInfo.loggedIn, commerceInfo.commerceId]);
 
   function handleLogin(id) {
     console.log("id received in handleLogin: " + id);
-    setLoggedIn(true);
-    setuserId(id);
+    setCommerceInfo({ loggedIn: true, commerceId: id });
   }
   
   return (
@@ -20,7 +26,7 @@ function CommercePage() {
         <Login
           onLogin={handleLogin}
           apiRoute='/api/commerce/login'
-          routeDir='/commerce/commerceLogged'
+          routeDir={routeDir} // Paso la url y como parámetro adminId
         />
       </div>
     </div>

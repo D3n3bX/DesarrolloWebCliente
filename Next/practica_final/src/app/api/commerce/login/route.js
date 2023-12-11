@@ -14,20 +14,19 @@ export async function POST(request) {
   console.log('Estoy en POST');
 
   try {
-    const users = JSON.parse(readFileSync('jsonFiles/commerce.json')); // Leo los datos de los users desde un archivo JSON
+    const commerces = JSON.parse(readFileSync('jsonFiles/commerce.json')); // Leo los datos de los commerces desde un archivo JSON
     const { username, password } = await request.json(); // Obtengo los credenciales (username y password) desde el cuerpo de la solicitud
     
-    const foundUser = users.find((user) => user.NombreComercio === username && user.CIF === password);
-    console.log(foundUser);
+    const foundCommerce = commerces.find((commerce) => commerce.NombreComercio === username && commerce.CIF === password);
+
     // Compruebo si los credenciales coinciden con algún useristrador
-    if (foundUser) { // Los credenciales coinciden con algún user
+    if (foundCommerce) { // Los credenciales coinciden con algún user
       console.log('Comercio correcto');
-      const { NombreComercio } = foundUser; // Obtengo el id del administrador que ha iniciado sesón
-      return NextResponse.json({ NombreComercio, message: "OK" }); // Devuelvo una respuesta JSON con el id del administrador
+      const { id } = foundCommerce; // Obtengo el id del administrador que ha iniciado sesón
+      return NextResponse.json({ id, message: "OK" }); // Devuelvo una respuesta JSON con el id del administrador
     } 
     else { // Las credenciales no son correctas
       console.log('Comercio no correcto');
-      
       return NextResponse.json({ message: 'Credenciales incorrectas' }, { status: 401 });  // Devuelvo una respuesta JSON con código de estado 401 (No Autorizado)
     }
   } catch (error) { // Manejo errores durante el proceso de la solicitud

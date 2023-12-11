@@ -5,6 +5,7 @@ import SearchCommerce from '@/components/CommerceSearch';
 export default function Home() {
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [routeDir, setRouteDir] = useState(''); // Creo un estado routeDir para indiacar a la ruta a la que se tiene que redirigir con su parámtero
 
   function handleLogin() {
     setLoggedIn(true);
@@ -19,7 +20,7 @@ export default function Home() {
 
       <section id="busqueda-comercios" className="text-center py-8">
         <h2 className="text-2xl font-bold mb-4">Buscar Comercios</h2>
-        <SearchCommerce apiRoute="/api/commerce/?NombreComercio=" routeDir="/tu-directorio-de-ruta" />
+        <SearchCommerce />
         {/* Asegúrate de pasar las rutas correctas como props apiRoute y routeDir */}
       </section>
 

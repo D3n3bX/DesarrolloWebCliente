@@ -1,75 +1,80 @@
 'use client'
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Modal from './Modal';
 
+// Define el componente SearchCommerce
 function SearchCommerce({ apiRoute, routeDir }) {
+  // Estado para el término de búsqueda
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // Estado para almacenar los resultados de la búsqueda
+  const [searchResults, setSearchResults] = useState([]);
+
+  // Instancia del router de Next.js
   const router = useRouter();
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isLoading, setLoading] = useState(false);
-  const [isErrorModalVisible, setErrorModalVisible] = useState(false);
-
-  function handleInputChange(e) {
-    setSearchQuery(e.target.value);
-  }
-
-  async function handleSearch(e) {
+  // Función para manejar la búsqueda
+  const handleSearch = async (e) => {
     e.preventDefault();
 
-    setLoading(true);
-
     try {
-      const response = await fetch(`${apiRoute}?NombreComercio=${searchQuery}`, {
-        method: 'GET',
+      // Realiza la búsqueda en la API con un método POST
+      const response = await fetch('api/commerce/search', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ searchTerm }), // Envía el término de búsqueda en el cuerpo de la solicitud
       });
 
-      setLoading(false);
+      const data = await response.json();
+      console.log('data:', data);
 
-      if (response.ok) {
-        console.log('Comercio encontrado');
-        // Handle the response or redirect as needed
-      } else {
-        console.error('Error buscando el comercio');
-        setErrorModalVisible(true);
-      }
+      // Actualiza los resultados de la búsqueda
+      setSearchResults(data.foundCommerce ? [data.foundCommerce] : []);
+
     } catch (error) {
-      console.error('Error en la solicitud:', error);
+      console.error('Error al realizar la búsqueda:', error);
     }
-  }
+  };
 
+  // Función para manejar el clic en un comercio
+  const handleCommerceClick = (id) => {
+    // Redirige a la página del comercio seleccionado
+    router.push(`${routeDir}/${id}`);
+  };
+
+  // JSX del componente SearchCommerce
   return (
-    <div className='h-screen w-screen flex flex-col justify-center items-center p-6 bg-tertiary'>
-      <div className='max-w-full mx-0 p-6 bg-quaternary shadow-md rounded-md'>
-        <h2 className='text-2xl font-semibold mb-4'>Buscar Comercio por Nombre</h2>
-        <div className='mb-4'>
-          <label className='block text-primary-700 text-sm mb-2' htmlFor='searchQuery'>
-            Nombre del Comercio:
-            <input
-              type='text'
-              id='searchQuery'
-              name='searchQuery'
-              value={searchQuery}
-              onChange={handleInputChange}
-              className='mt-1 p-2 border rounded w-full bg-text'
-            />
-          </label>
+    <div>
+      <form onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Buscar por nombre, ciudad o actividad"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button type="submit">Buscar</button>
+      </form>
+
+      {searchResults.length > 0 && (
+        <div>
+          <h2>Resultados de la búsqueda:</h2>
+          <ul>
+            {searchResults.map((commerce) => (
+              <li key={commerce.id} onClick={() => handleCommerceClick(commerce.id)}>
+                {`${commerce.NombreComercio} - ${commerce.Ciudad} - ${commerce.Actividad}`}
+              </li>
+            ))}
+          </ul>
         </div>
-        <button
-          type='submit'
-          onClick={handleSearch}
-          disabled={isLoading}
-          className='bg-tertiary text-white p-2 rounded hover:bg-secondary transition duration-300'
-        >
-          {isLoading ? 'Buscando...' : 'Buscar'}
-        </button>
-        {isErrorModalVisible && (
-          <Modal message={'Error en la búsqueda. Inténtalo de nuevo'} onClose={() => setErrorModalVisible(false)} />
-        )}
-      </div>
+      )}
+
+      {searchResults.length === 0 && (
+        <div>
+          <h2>Sin resultados</h2>
+        </div>
+      )}
     </div>
   );
 }

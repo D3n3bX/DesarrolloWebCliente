@@ -39,10 +39,10 @@ function SearchCommerce({ apiRoute, routeDir }) {
   };
 
   // Función para manejar el clic en un comercio
-  const handleCommerceClick = (id) => {
-    // Redirige a la página del comercio seleccionado
-    router.push(`${routeDir}/${id}`);
-  };
+  // const handleCommerceClick = (id) => {
+  //   // Redirige a la página del comercio seleccionado
+  //   router.push(`${routeDir}/${id}`);
+  // };
 
   // JSX del componente SearchCommerce
   return (
@@ -62,8 +62,25 @@ function SearchCommerce({ apiRoute, routeDir }) {
           <h2>Resultados de la búsqueda:</h2>
           <ul>
             {searchResults.map((commerce) => (
-              <li key={commerce.id} onClick={() => handleCommerceClick(commerce.id)}>
-                {`${commerce.NombreComercio} - ${commerce.Ciudad} - ${commerce.Actividad}`}
+              <li>
+                <div>
+                  <h3>{commerce.NombreComercio}</h3>
+                  <p>Ciudad: {commerce.Ciudad}</p>
+                  <p>Actividad: {commerce.Actividad}</p>
+                  <p>Resumen: {commerce.Resumen}</p>
+                  <p>CIF: {commerce.CIF}</p>
+                  <p>Dirección: {commerce.Direccion}</p>
+                  <p>Email: {commerce.Email}</p>
+                  <p>Teléfono: {commerce.Telefono}</p>
+                  <p>Scoring: {commerce.Scoring}</p>
+                  <p>Número de Puntuaciones: {commerce.NumeroPuntuacion}</p>
+                  <p>Reseñas:</p>
+                  <ul>
+                    {commerce.Reseñas.map((reseña, index) => (
+                      <li key={index}>{reseña}</li>
+                    ))}
+                  </ul>
+                </div>
               </li>
             ))}
           </ul>
@@ -79,4 +96,6 @@ function SearchCommerce({ apiRoute, routeDir }) {
   );
 }
 
+// Exporta el componente SearchCommerce por defecto
 export default SearchCommerce;
+

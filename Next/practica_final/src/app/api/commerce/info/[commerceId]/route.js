@@ -1,11 +1,10 @@
-// Import necessary modules
 import { NextResponse } from 'next/server';
 import { readFileSync } from 'fs';
 
 /*
   FUNCION
     GET(request, { params })
-    Maneja las solicitudes HTTP GET para buscar un comercio por NombreComercio.
+    Maneja las solicitudes HTTP GET para buscar un comercio por ID.
   Parámetros:
     - request: Objeto de solicitud HTTP
     - params: Parámetros de ruta
@@ -17,7 +16,7 @@ export async function GET(request, { params }) {
 
   try {
       const commerces = JSON.parse(readFileSync('jsonFiles/commerce.json')); // Lee los datos de los commerceistradores desde un archivo JSON
-      console.log(commerces);
+      
       const commerceId = params.commerceId; // Obtengo el valor de commerceId desde los parámetros
       console.log("commerceId: " + commerceId);
       
@@ -25,7 +24,7 @@ export async function GET(request, { params }) {
       console.log(foundcommerce);
       if (foundcommerce) { // El comercio fue encontrado
           console.log('Comercio encontrado:', foundcommerce.NombreComercio);
-          return NextResponse.json({ username: foundcommerce.NombreComercio, id: foundcommerce.id, message: 'OK' }); // Devuelvoo una respuesta JSON con el nombre del comercio y su id
+          return NextResponse.json(foundcommerce); // Devuelvoo una respuesta JSON con el nombre del comercio y su id
       } 
       else { // El comercio no fue encontrado
           console.log('Comercio no encontrado');

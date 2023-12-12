@@ -5,31 +5,33 @@ import Link from 'next/link';
 
 function CommerceLoggedPage() {
     const [username, setUsername] = useState('');
+    const[id, setId] = useState('');
     const router = useRouter();
     
     useEffect(() => {
         
         const queryParams = new URLSearchParams(window.location.search); 
-        const commerceId = queryParams.get('commerceId'); // Obtengo el valor de adminId de la URL
+        const commerceId = queryParams.get('commerceId'); // Obtengo el valor de commerceId de la URL
         console.log(commerceId)
-        // Verificar que adminId esté definido antes de realizar la solicitud
-        if (commerceId) {
+
+        if (commerceId) { // Verifico que commerId esté definido antes de realizar la solicitud
           console.log('commerceId desde commerceLoggedPage: ' + commerceId);
       
-          // Realizar una solicitud GET al servidor para obtener la información del usuario administrador
-          fetch(`/api/commerce/${commerceId}`)
+          fetch(`/api/commerce/${commerceId}`)  // Realizo una solicitud GET al servidor para obtener la información del usuario comercio
             .then((response) => {
               if (!response.ok) {
-                throw new Error('Error al obtener los datos del usuario');
+                throw new Error('Error al obtener los datos del comercio');
               }
               return response.json();
             })
             .then((data) => {
               setUsername(data.username);
+              setId(data.id);
               console.log('username: ' + username);
+              console.log('id: ' + id);
             })
             .catch((error) => {
-              console.error('Error al obtener los datos del usuario:', error);
+              console.error('Error al obtener los datos del comercio:', error);
             });
         }
       }, [router.query]);
@@ -42,8 +44,9 @@ function CommerceLoggedPage() {
               {/* Agrega contenido adicional aquí */}
               <p>¿Qué deseas hacer?</p>
               <ul>
-                <Link href="/admin/adminLogged/registerCommerce">Editar informacion</Link>
-                <Link href="/admin/adminLogged/deleteCommerce">Eliminar comercio</Link>
+                <Link href= {`/commerce/commerceLogged/infoCommerce?id=${id}`}>Mostrar informacion</Link>
+                <Link href= {`/commerce/commerceLogged/editCommerce?username=${username}`}>Editar informacion</Link>
+                <Link href={`/commerce/commerceLogged/deleteCommerce?=username=${username}`}>Eliminar comercio</Link>
               </ul>
             </div>
         </div>

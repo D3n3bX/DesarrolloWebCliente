@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { readFileSync } from 'fs';
 
-export async function POST(request, { params }) {
+export async function POST(request) {
     console.log('Estoy en POST');
   
     try {

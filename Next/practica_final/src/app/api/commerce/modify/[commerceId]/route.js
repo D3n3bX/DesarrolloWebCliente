@@ -30,18 +30,31 @@ export async function PUT(request, { params }) {
       return NextResponse.json({ message: 'El comercio no existe' }, { status: 404 }); // Si no existe, devuelvo un mensaje indicándolo
     }
 
-    // Actualizo la información del comercio
-    commerces[commerceIndex] = {
-      ...commerces[commerceIndex],
-      NombreComercio,
-      Direccion,
-      Ciudad,
-      Email,
-      Telefono,
-      Actividad,
-      Titulo,
-      Resumen,
-    };
+    // Actualizar solo los campos que tienen valores proporcionados y no están vacíos
+    if (NombreComercio !== undefined && NombreComercio.trim() !== '') {
+      commerces[commerceIndex].NombreComercio = NombreComercio;
+    }
+    if (Direccion !== undefined && Direccion.trim() !== '') {
+      commerces[commerceIndex].Direccion = Direccion;
+    }
+    if (Ciudad !== undefined && Ciudad.trim() !== '') {
+      commerces[commerceIndex].Ciudad = Ciudad;
+    }
+    if (Email !== undefined && Email.trim() !== '') {
+      commerces[commerceIndex].Email = Email;
+    }
+    if (Telefono !== undefined && Telefono.trim() !== '') {
+      commerces[commerceIndex].Telefono = Telefono;
+    }
+    if (Actividad !== undefined && Actividad.trim() !== '') {
+      commerces[commerceIndex].Actividad = Actividad;
+    }
+    if (Titulo !== undefined && Titulo.trim() !== '') {
+      commerces[commerceIndex].Titulo = Titulo;
+    }
+    if (Resumen !== undefined && Resumen.trim() !== '') {
+      commerces[commerceIndex].Resumen = Resumen;
+    }
 
     await writeFileSync('jsonFiles/commerce.json', JSON.stringify(commerces, null, 2)); // Escribo los datos actualizados en el archivo JSON
 

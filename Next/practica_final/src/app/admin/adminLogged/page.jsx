@@ -45,6 +45,7 @@ function AdminLoggedPage() {
               <ul>
                 <Link href="/admin/adminLogged/registerCommerce">Registrar un comercio</Link>
                 <Link href="/admin/adminLogged/deleteCommerce">Eliminar un comercio</Link>
+                <Link href="/admin/adminLogged/searchCommerce">Buscar un comercio</Link>
               </ul>
             </div>
         </div>

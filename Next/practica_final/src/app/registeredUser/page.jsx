@@ -48,6 +48,9 @@ function RegisteredUserPage() {
                   <Link href="/registeredUser/review">Hacer una reseña</Link>
                   <Link href="/registeredUser/searchCommerce">Buscar un comercio</Link>
                   <Link href={`/registeredUser/editInfo?userId=${id}`}>Editar informacion</Link>
+                  <Link href={`/registeredUser/deleteUser?userId=${id}`}>Eliminar</Link>
+
+
                 </ul>
               </div>
           </div>

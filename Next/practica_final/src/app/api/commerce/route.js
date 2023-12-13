@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync } from 'fs';
 /*
   FUNCION (asíncorna)
     POST(request)
-    Maneja las solicitudes HTTP POST, especialmente diseñado para el proceso de registro de un nuevo usuario -> Regsitra un nuevo comercio desde el admin
+    Maneja las solicitudes HTTP POST -> Regsitra un nuevo comercio desde el admin
   Parámetros:
     - request: Objeto de solicitud HTTP
   Return:

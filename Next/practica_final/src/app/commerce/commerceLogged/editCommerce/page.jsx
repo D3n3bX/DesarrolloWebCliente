@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+'use client'
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Modal from './Modal';
+import Modal from '@/components/Modal';
 
 function EditCommercePage({ apiRoute, routeDir }) {
     const router = useRouter();
@@ -16,18 +17,63 @@ function EditCommercePage({ apiRoute, routeDir }) {
       Resumen:'',
     });
 
+    const [isLoading, setLoading] = useState(false);
+    const [isErrorModalVisible, setErrorModalVisible] = useState(false);
+
     useEffect(() => {
         const queryParams = new URLSearchParams(window.location.search);
         const commerceId = queryParams.get('id');
     
-        console.log('commerceId: ' + commerceId);
-    
-    });
+        console.log('commerceId dentro de useEffect: ' + commerceId);
 
+        
+    }, [router.query]);
+
+    async function handleModify(e) {
+      e.preventDefault();
+      const queryParams = new URLSearchParams(window.location.search);
+      const commerceId = queryParams.get('id');
+    
+      console.log('commerceId dentro de handleModify: ' + commerceId);
+     
+      setLoading(true);
+  
+      try {
+        const response = await fetch(`/api/commerce/modify/${commerceId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(commerceInfo),
+        });
+  
+        setLoading(false);
+  
+        if (response.ok) {
+          console.log('Registro de comercio exitoso');
+          router.push(routeDir);
+        } else {
+          console.error('Error en el registro del comercio');
+          setErrorModalVisible(true);
+        }
+      } catch (error) {
+        console.error('Error en la solicitud:', error);
+      }
+    }
+
+
+    function handleInputChange(e) {
+      const { name, value } = e.target;
+      setCommerceInfo((prevCommerceInfo) => ({
+        ...prevCommerceInfo,
+        [name]: value,
+      }));
+    }
+    
     return (
       <div className='h-screen w-screen flex flex-col justify-center items-center p-6 bg-tertiary'>
         <div className='max-w-full mx-0 p-6 bg-quaternary shadow-md rounded-md'>
-          <h2 className='text-2xl font-semibold mb-4'>Registrar Comercio</h2>
+          <h2 className='text-2xl font-semibold mb-4'>Modificar Información del Comercio</h2>
           <div className='mb-4'>
             <label className='block text-primary-700 text-sm mb-2' htmlFor='NombreComercio'>
               Nombre del comercio:
@@ -36,19 +82,6 @@ function EditCommercePage({ apiRoute, routeDir }) {
                 id='NombreComercio'
                 name='NombreComercio'
                 value={commerceInfo.NombreComercio}
-                onChange={handleInputChange}
-                className='mt-1 p-2 border rounded w-full bg-text'
-              />
-            </label>
-          </div>
-          <div className='mb-4'>
-            <label className='block text-primary-700 text-sm mb-2' htmlFor='CIF'>
-              CIF:
-              <input
-                type='text'
-                id='CIF'
-                name='CIF'
-                value={commerceInfo.CIF}
                 onChange={handleInputChange}
                 className='mt-1 p-2 border rounded w-full bg-text'
               />
@@ -119,9 +152,34 @@ function EditCommercePage({ apiRoute, routeDir }) {
               />
             </label>
           </div>
+          <div className='mb-4'>
+            <label className='block text-primary-700 text-sm mb-2' htmlFor='Titulo'>
+              Titulo:
+              <input
+                type='text'
+                id='Titulo'
+                name='Titulo'
+                value={commerceInfo.Titulo}
+                onChange={handleInputChange}
+                className='mt-1 p-2 border rounded w-full bg-text'
+              />
+            </label>
+          </div>
+          <div className='mb-4'>
+              <label className='block text-primary-700 text-sm mb-2' htmlFor='Resumen'>
+              Resumen:
+              <textarea
+                  id='Resumen'
+                  name='Resumen'
+                  value={commerceInfo.Resumen}
+                  onChange={handleInputChange}
+                  className='mt-1 p-2 border rounded w-full bg-text'
+              />
+              </label>
+          </div>
           <button
             type='submit'
-            onClick={handleRegister}
+            onClick={handleModify}
             disabled={isLoading}
             className='bg-tertiary text-white p-2 rounded hover:bg-secondary transition duration-300'
           >

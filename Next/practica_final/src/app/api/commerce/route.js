@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync } from 'fs';
 /*
   FUNCION (asíncorna)
     POST(request)
-    Maneja las solicitudes HTTP POST, especialmente diseñado para el proceso de registro de un nuevo usuario
+    Maneja las solicitudes HTTP POST, especialmente diseñado para el proceso de registro de un nuevo usuario -> Regsitra un nuevo comercio desde el admin
   Parámetros:
     - request: Objeto de solicitud HTTP
   Return:
@@ -16,14 +16,14 @@ export async function POST(request) {
     try {
         const commerces = JSON.parse(readFileSync('jsonFiles/commerce.json')); // Leo los datos de los commerces desde un archivo JSON
 
-        const { NombreComercio, CIF, Direccion, Email, Telefono } = await request.json(); // Obtengo los credenciales  desde el cuerpo de la solicitud
+        const { NombreComercio, CIF, Direccion, Ciudad, Email, Telefono, Actividad } = await request.json(); // Obtengo los credenciales  desde el cuerpo de la solicitud
 
         // Compruebo si el comercio ya existe
         if (commerces.find((commerce) => commerce.NombreComercio === NombreComercio)) {
-            return NextResponse.json({ message: 'El comercio ya existe' }, { status: 400 });
+            return NextResponse.json({ message: 'El comercio ya existe' }, { status: 400 }); // Si existe mando un mensaje indicándolo
         }
         
-        const newcommerce = {id: commerces.length + 1, NombreComercio, CIF, Direccion, Email, Telefono};        
+        const newcommerce = {id: commerces.length + 1, NombreComercio, CIF, Direccion, Ciudad, Email, Telefono, Actividad}; // Creo un nuevo comercio  
         commerces.push(newcommerce); // Añado el nuevo usuario
 
         await writeFileSync('jsonFiles/commerce.json', JSON.stringify(commerces, null, 2)); // Escribo los datos actualizados en el archivo JSON
@@ -72,7 +72,7 @@ export function PUT() {
 /*
   FUNCION
     DELETE(request, { params })
-    Maneja las solicitudes HTTP DELETE.
+    Maneja las solicitudes HTTP DELETE. -> Borra un comercio desde admin
   Parámetros:
     - request: Objeto de solicitud HTTP
   Return:
@@ -91,16 +91,14 @@ export async function DELETE(request) {
 
       // Comprueba si el comercio existe
       if (indexToDelete === -1) {
-          return NextResponse.json({ message: 'El comercio no existe' }, { status: 404 });
+          return NextResponse.json({ message: 'El comercio no existe' }, { status: 404 }); // Si no existe mando un mensaje indicándolo y me salgo
       }
 
-      // Elimina el comercio de la lista
-      commerces.splice(indexToDelete, 1);
+      commerces.splice(indexToDelete, 1); // Elimino el comercio de la lista
 
-      // Escribe los datos actualizados en el archivo JSON
-      await writeFileSync('jsonFiles/commerce.json', JSON.stringify(commerces, null, 2));
+      await writeFileSync('jsonFiles/commerce.json', JSON.stringify(commerces, null, 2)); // Escribo los datos actualizados en el archivo JSON
 
-      return NextResponse.json({ message: 'Comercio eliminado correctamente' });
+      return NextResponse.json({ message: 'Comercio eliminado correctamente' });  // Devuelvo una respuesta JSON
   } catch (error) {
       console.error('Error en el servidor:', error);
       return NextResponse.json({ message: 'Error en el servidor' }, { status: 500 });

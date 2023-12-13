@@ -45,8 +45,8 @@ function CommerceLoggedPage() {
               <p>¿Qué deseas hacer?</p>
               <ul>
                 <Link href= {`/commerce/commerceLogged/infoCommerce?id=${id}`}>Mostrar informacion</Link>
-                <Link href= {`/commerce/commerceLogged/editCommerce?username=${username}`}>Editar informacion</Link>
-                <Link href={`/commerce/commerceLogged/deleteCommerce?=username=${username}`}>Eliminar comercio</Link>
+                <Link href= {`/commerce/commerceLogged/editCommerce?id=${id}`}>Editar informacion</Link>
+                <Link href={`/commerce/commerceLogged/deleteCommerce?=id=${id}`}>Eliminar comercio</Link>
               </ul>
             </div>
         </div>

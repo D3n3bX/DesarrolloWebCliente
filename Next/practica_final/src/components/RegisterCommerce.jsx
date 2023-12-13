@@ -10,8 +10,10 @@ function RegisterCommerce({ apiRoute, routeDir }) {
     NombreComercio: '',
     CIF: '',
     Direccion: '',
+    Ciudad: '',
     Email: '',
-    TelefonoContacto: '',
+    Telefono: '',
+    Actividad:'',
   });
 
   const [isLoading, setLoading] = useState(false);
@@ -97,6 +99,19 @@ function RegisterCommerce({ apiRoute, routeDir }) {
           </label>
         </div>
         <div className='mb-4'>
+          <label className='block text-primary-700 text-sm mb-2' htmlFor='Ciudad'>
+            Ciudad:
+            <input
+              type='text'
+              id='Ciudad'
+              name='Ciudad'
+              value={commerceInfo.Ciudad}
+              onChange={handleInputChange}
+              className='mt-1 p-2 border rounded w-full bg-text'
+            />
+          </label>
+        </div>
+        <div className='mb-4'>
           <label className='block text-primary-700 text-sm mb-2' htmlFor='Email'>
             E-mail:
             <input
@@ -114,9 +129,22 @@ function RegisterCommerce({ apiRoute, routeDir }) {
             Teléfono de contacto:
             <input
               type='text'
-              id='TelefonoContacto'
-              name='TelefonoContacto'
-              value={commerceInfo.TelefonoContacto}
+              id='Telefono'
+              name='Telefono'
+              value={commerceInfo.Telefono}
+              onChange={handleInputChange}
+              className='mt-1 p-2 border rounded w-full bg-text'
+            />
+          </label>
+        </div>
+        <div className='mb-4'>
+          <label className='block text-primary-700 text-sm mb-2' htmlFor='Actividad'>
+            Actividad:
+            <input
+              type='text'
+              id='Actividad'
+              name='Actividad'
+              value={commerceInfo.Actividad}
               onChange={handleInputChange}
               className='mt-1 p-2 border rounded w-full bg-text'
             />

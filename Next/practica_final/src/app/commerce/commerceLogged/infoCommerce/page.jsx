@@ -23,7 +23,7 @@ function InfoCommercePage() {
         .then((data) => {
           if (data) {
             console.log('data: ' + data)
-            setCommerceInfo(data); // Utiliza data.foundCommerce para obtener la información del comercio
+            setCommerceInfo(data); 
             console.log('commerceInfo: ' + commerceInfo.data);
           } else {
             console.error('Commerce not found:', data.message);
@@ -38,7 +38,7 @@ function InfoCommercePage() {
   return (
     <div className='h-screen w-screen flex flex-col justify-center items-center p-6 bg-tertiary'>
       <div className='max-w-sm mx-auto p-6 bg-quaternary shadow-md rounded-md'>
-      <h1>Commerce Information</h1>
+      <h2 className='text-2xl font-semibold mb-4'>Información del Comercio</h2>
       <p>Nombre del comercio: {commerceInfo?.NombreComercio}</p>
       <p>CIF: {commerceInfo?.CIF}</p>
       <p>Direccion: {commerceInfo?.Direccion}</p>
@@ -48,7 +48,7 @@ function InfoCommercePage() {
       <p>Resumen: {commerceInfo?.Resumen}</p>
       <p>Actividad: {commerceInfo?.Actividad}</p>
       <p>Scoring: {commerceInfo?.Scoring}</p>
-      <p>NumeroPuntuacion: {commerceInfo?.NumeroPuntuacion}</p>
+      <p>Número de votos: {commerceInfo?.NumeroPuntuacion}</p>
 
       <h2>Reseñas:</h2>
       <ul>

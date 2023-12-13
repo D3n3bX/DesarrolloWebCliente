@@ -49,5 +49,15 @@
       "Muy buena la tienda",
       "Tienen una gran variedad de libros"
     ]
+  },
+  {
+    "id": 4,
+    "NombreComercio": "PUTA",
+    "CIF": "JODER",
+    "Direccion": "ME CAGO EN LA PUTA",
+    "Ciudad": "Madrid",
+    "Email": "comercioPrueba@example.com",
+    "Telefono": "654321987",
+    "Actividad": "PEGARSE UN TIRO"
   }
 ]

@@ -4,7 +4,7 @@ import { readFileSync } from 'fs';
 /*
   FUNCION
     POST(request)
-    Maneja las solicitudes HTTP POST, especialmente diseñado para el proceso de inicio de sesión.
+    Maneja las solicitudes HTTP POST -> Inicia sesión para los adminsitradores
   Parámetros:
     - request: Objeto de solicitud HTTP
   Return:

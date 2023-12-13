@@ -25,7 +25,7 @@ export async function GET(request, { params }) {
 
         if (foundUser) { // El administrador fue encontrado
             console.log('Usuario encontrado:', foundUser.username); 
-            return NextResponse.json({ username: foundUser.username, message: 'OK' }); // Devuelvo el username del adminid y un mensaje de OK
+            return NextResponse.json({ username: foundUser.username, id: foundUser.id, message: 'OK' }); // Devuelvo el username del adminid y un mensaje de OK
         } 
         else { // El usuario no fue encontrado
             console.log('Usuario no encontrado');

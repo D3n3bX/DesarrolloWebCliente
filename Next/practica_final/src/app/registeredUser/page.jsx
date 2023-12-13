@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 function RegisteredUserPage() {
 
     const [username, setUsername] = useState(''); // Creo un estado username para indicar el username del administrador qiue inició sesión
+    const[id, setId] = useState('');
     const router = useRouter();
     
     useEffect(() => {
@@ -27,6 +28,7 @@ function RegisteredUserPage() {
           })
           .then((data) => {
             setUsername(data.username);
+            setId(data.id);
             console.log('username: ' + username);
           })
           .catch((error) => {
@@ -45,7 +47,7 @@ function RegisteredUserPage() {
                 <ul>
                   <Link href="/registeredUser/review">Hacer una reseña</Link>
                   <Link href="/registeredUser/searchCommerce">Buscar un comercio</Link>
-
+                  <Link href={`/registeredUser/editInfo?userId=${id}`}>Editar informacion</Link>
                 </ul>
               </div>
           </div>

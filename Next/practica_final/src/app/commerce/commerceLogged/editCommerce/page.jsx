@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Modal from '@/components/Modal';
 
-function EditCommercePage({ apiRoute, routeDir }) {
+function EditCommercePage({ routeDir }) {
     const router = useRouter();
 
     const [commerceInfo, setCommerceInfo] = useState({
@@ -19,15 +19,6 @@ function EditCommercePage({ apiRoute, routeDir }) {
 
     const [isLoading, setLoading] = useState(false);
     const [isErrorModalVisible, setErrorModalVisible] = useState(false);
-
-    useEffect(() => {
-        const queryParams = new URLSearchParams(window.location.search);
-        const commerceId = queryParams.get('id');
-    
-        console.log('commerceId dentro de useEffect: ' + commerceId);
-
-        
-    }, [router.query]);
 
     async function handleModify(e) {
       e.preventDefault();
